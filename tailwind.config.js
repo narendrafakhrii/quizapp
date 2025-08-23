@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
 
@@ -20,3 +21,14 @@ export default {
 
     plugins: [forms],
 };
+=======
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+>>>>>>> a89974917a4cd22719195d3a0cbc93a3c93547eb
