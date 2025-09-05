@@ -41,7 +41,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 pt-35 max-w-6xl mx-auto text-center">
             <!-- Card 1 -->
             <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-                <img src="https://placehold.co/600x400" alt="Gambar" class="w-full h-40 object-cover">
+                <img src="https://media.tenor.com/KeWvZtKaSLYAAAAM/koree-antonio-rizz.gif" alt="Gambar" class="w-full h-30 object-cover">
                 <div class="p-4">
                 <h3 class="text-lg font-semibold">Grammar</h3>
                 <p class="text-gray-600 mt-2">Deskripsi singkat tentang kartu ini.</p>
@@ -51,7 +51,7 @@
 
             <!-- Card 2 -->
             <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-                <img src="https://placehold.co/600x400" alt="Gambar" class="w-full h-40 object-cover">
+                <img src="/images/koree-antonio-rizz.gif" alt="Gambar" class="w-full h-40 object-cover">
                 <div class="p-4">
                 <h3 class="text-lg font-semibold">Vocabulary</h3>
                 <p class="text-gray-600 mt-2">Deskripsi singkat tentang kartu ini.</p>
