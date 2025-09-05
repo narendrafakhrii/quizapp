@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\QuizController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,3 +40,9 @@ Route::get('/learn', function () {
 Route::get('/practice', function () {
     return view('practice');
 });
+
+Route::get('/level', function () {
+    return view('level');
+})->name('level');
+
+Route::get('/quiz', [QuizController::class, 'index'])->name('quiz');
