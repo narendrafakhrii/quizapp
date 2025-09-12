@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Question; // <- import model di sini
-
+use App\Models\Question; // import Question model
 class QuizController extends Controller
 {
-    public function index()
+    public function quiz()
     {
         // ambil semua soal beserta pilihan jawaban
         $questions = Question::with('options')->get();

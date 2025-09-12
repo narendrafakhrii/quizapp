@@ -18,7 +18,12 @@
 
 <body>
     <!-- Navigation Bar -->
-    <x-nav-bar />
+    <x-nav-bar :menu="[
+        ['name' => 'Home', 'url' => '/home'],
+        ['name' => 'Learn', 'url' => '/learn'],
+        ['name' => 'Practice', 'url' => '/practice'],
+    ]" :showMenu="true" :showSettings="true" />
+
 
     <!-- Main Content -->
 

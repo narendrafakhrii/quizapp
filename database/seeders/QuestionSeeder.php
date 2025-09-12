@@ -20,7 +20,7 @@ class QuestionSeeder extends Seeder
 
         $questions = [
     [
-        'question' => 'Choose the correct verb: She ___ to school every day.',
+        'question_text' => 'Choose the correct verb: She ___ to school every day.',
         'options' => [
             ['option_text'=>'go','is_correct'=>false],
             ['option_text'=>'going','is_correct'=>false],
@@ -30,7 +30,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'I have ___ apple.',
+        'question_text' => 'I have ___ apple.',
         'options' => [
             ['option_text'=>'a','is_correct'=>false],
             ['option_text'=>'an','is_correct'=>true],
@@ -40,7 +40,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'Choose the correct pronoun: ___ is my best friend.',
+        'question_text' => 'Choose the correct pronoun: ___ is my best friend.',
         'options' => [
             ['option_text'=>'He','is_correct'=>false],
             ['option_text'=>'She','is_correct'=>true],
@@ -50,7 +50,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'I am good ___ playing football.',
+        'question_text' => 'I am good ___ playing football.',
         'options' => [
             ['option_text'=>'on','is_correct'=>false],
             ['option_text'=>'in','is_correct'=>false],
@@ -60,7 +60,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'They ___ dinner now.',
+        'question_text' => 'They ___ dinner now.',
         'options' => [
             ['option_text'=>'eat','is_correct'=>false],
             ['option_text'=>'eats','is_correct'=>false],
@@ -70,7 +70,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'I have two ___.',
+        'question_text' => 'I have two ___.',
         'options' => [
             ['option_text'=>'cat','is_correct'=>false],
             ['option_text'=>'cats','is_correct'=>true],
@@ -80,7 +80,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'This is ___ book.',
+        'question_text' => 'This is ___ book.',
         'options' => [
             ['option_text'=>'I','is_correct'=>false],
             ['option_text'=>'me','is_correct'=>false],
@@ -90,7 +90,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'My house is ___ than yours.',
+        'question_text' => 'My house is ___ than yours.',
         'options' => [
             ['option_text'=>'big','is_correct'=>false],
             ['option_text'=>'bigger','is_correct'=>true],
@@ -100,7 +100,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'She ___ like pizza.',
+        'question_text' => 'She ___ like pizza.',
         'options' => [
             ['option_text'=>'do not','is_correct'=>false],
             ['option_text'=>'does not','is_correct'=>true],
@@ -110,7 +110,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => '___ you like ice cream?',
+        'question_text' => '___ you like ice cream?',
         'options' => [
             ['option_text'=>'Do','is_correct'=>true],
             ['option_text'=>'Does','is_correct'=>false],
@@ -120,7 +120,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'I ___ a new bike yesterday.',
+        'question_text' => 'I ___ a new bike yesterday.',
         'options' => [
             ['option_text'=>'buy','is_correct'=>false],
             ['option_text'=>'buys','is_correct'=>false],
@@ -130,7 +130,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'I want to eat, ___ I am not hungry.',
+        'question_text' => 'I want to eat, ___ I am not hungry.',
         'options' => [
             ['option_text'=>'and','is_correct'=>false],
             ['option_text'=>'but','is_correct'=>true],
@@ -140,7 +140,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'It is ___ today.',
+        'question_text' => 'It is ___ today.',
         'options' => [
             ['option_text'=>'sunny','is_correct'=>true],
             ['option_text'=>'sun','is_correct'=>false],
@@ -150,7 +150,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'She can ___ well.',
+        'question_text' => 'She can ___ well.',
         'options' => [
             ['option_text'=>'sings','is_correct'=>false],
             ['option_text'=>'singing','is_correct'=>false],
@@ -160,7 +160,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'There are many ___ in the sky.',
+        'question_text' => 'There are many ___ in the sky.',
         'options' => [
             ['option_text'=>'star','is_correct'=>false],
             ['option_text'=>'stars','is_correct'=>true],
@@ -170,7 +170,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'This pen is ___.',
+        'question_text' => 'This pen is ___.',
         'options' => [
             ['option_text'=>'my','is_correct'=>false],
             ['option_text'=>'mine','is_correct'=>true],
@@ -180,7 +180,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'He runs very ___.',
+        'question_text' => 'He runs very ___.',
         'options' => [
             ['option_text'=>'quick','is_correct'=>false],
             ['option_text'=>'quickly','is_correct'=>true],
@@ -190,7 +190,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'We ___ to the park yesterday.',
+        'question_text' => 'We ___ to the park yesterday.',
         'options' => [
             ['option_text'=>'go','is_correct'=>false],
             ['option_text'=>'goes','is_correct'=>false],
@@ -200,7 +200,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'She ___ breakfast every morning.',
+        'question_text' => 'She ___ breakfast every morning.',
         'options' => [
             ['option_text'=>'have','is_correct'=>false],
             ['option_text'=>'has','is_correct'=>true],
@@ -210,7 +210,7 @@ class QuestionSeeder extends Seeder
         ]
     ],
     [
-        'question' => 'Choose the correct sentence:',
+        'question_text' => 'Choose the correct sentence:',
         'options' => [
             ['option_text'=>'I am a student.','is_correct'=>true],
             ['option_text'=>'I am student.','is_correct'=>false],
@@ -223,7 +223,7 @@ class QuestionSeeder extends Seeder
 
 
         foreach($questions as $q){
-            $question = Question::create(['question_text'=>$q['question']]);
+            $question = Question::create(['question_text'=>$q['question_text']]);
             foreach($q['options'] as $opt){
                 $question->options()->create($opt);
             }

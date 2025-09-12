@@ -18,7 +18,12 @@
 
 <body>
     <!-- Navigation Bar -->
-    <x-nav-bar />
+    <x-nav-bar :menu="[
+        ['name' => 'Home', 'url' => '/home'],
+        ['name' => 'Learn', 'url' => '/learn'],
+        ['name' => 'Practice', 'url' => '/practice'],
+    ]" :showMenu="true" :showSettings="true" />
+
 
     <div class="relative isolate px-6 lg:px-8">
         <div aria-hidden="true"
@@ -29,13 +34,14 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6 p-6 pt-35 max-w-6xl mx-auto text-center">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6 p-6 pt-35 max-w-6xl mx-auto">
         <!-- Card 1 -->
         <div class="bg-white rounded-2xl shadow-md overflow-hidden">
             <img src="https://placehold.co/600x400" alt="Gambar" class="w-full h-40 object-cover">
             <div class="p-4">
-                <h3 class="text-lg font-semibold">Grammar</h3>
-                <p class="text-gray-600 mt-2">Deskripsi singkat tentang kartu ini.</p>
+                <h3 class="text-lg font-bold">Simulasi UTBK</h3>
+                <p class="text-gray-600 mt-2">Uji kemampuanmu dan hadapi soal-soal ala UTBK mulai dari grammar,
+                    vocabulary, hingga reading, dan buktikan sejauh mana kamu siap menghadapi ujian sebenarnya.</p>
                 <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Lihat</button>
             </div>
         </div>

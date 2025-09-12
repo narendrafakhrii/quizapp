@@ -13,6 +13,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/start', function () {
+    return view('start');
+})->name('start');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -45,4 +49,4 @@ Route::get('/level', function () {
     return view('level');
 })->name('level');
 
-Route::get('/quiz', [QuizController::class, 'index'])->name('quiz');
+Route::get('/quiz', [QuizController::class, 'quiz'])->name('quiz');

@@ -45,9 +45,9 @@
 
         <!-- Submit Button -->
         <div class="flex items-center justify-end mt-4">
-            <x-primary-button class="w-full py-2 px-4 justify-center">
+            <x-button.primary-button class="w-full py-2 px-4 justify-center">
                 {{ __('Log in') }}
-            </x-primary-button>
+            </x-button.primary-button>
         </div>
 
         <!-- Divider -->

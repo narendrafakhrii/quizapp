@@ -16,17 +16,21 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
-    <header class="flex justify-center items-center">
-        <h2 class="text-4xl font-bold mt-20">Level Quiz</h2>
-    </header>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 pt-35 max-w-6xl mx-auto">
-        <x-card.level-card level="Newbie" description="Deskripsi singkat." href="{{ route('quiz') }}" />
+<body class="font-sans antialiased flex flex-col min-h-screen">
+    <x-nav-bar :showAuthLinks="true" />
 
-        <x-card.level-card level="Intermediate" description="Deskripsi singkat." href="{{ route('quiz') }}" />
-
-        <x-card.level-card level="Expert" description="Deskripsi singkat." href="{{ route('quiz') }}" />
-    </div>
+    <main class="flex flex-col flex-grow items-center justify-center text-center">
+        <h1 class="text-5xl font-extrabold tracking-tight text-balance sm:text-7xl">
+            {{ config('app.name') }}
+        </h1>
+        <p class="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">
+            Be Expert English
+        </p>
+        <x-button.primary-button class="mt-10">
+            <a href="{{ route('login') }}">Get Started</a>
+        </x-button.primary-button>
+    </main>
 </body>
+
 
 </html>

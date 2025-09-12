@@ -45,9 +45,9 @@
         </div>
 
         <div class="relative my-6 mt-6 mb-6">
-            <x-primary-button class="w-full py-2 px-2 justify-center">
+            <x-button.primary-button class="w-full py-2 px-2 justify-center">
                 {{ __('Register') }}
-            </x-primary-button>
+            </x-button.primary-button>
         </div>
 
         <div class="flex items-center justify-between mt-4">
