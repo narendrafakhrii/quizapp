@@ -19,11 +19,7 @@
 
 <body>
     <!-- Navigation Bar -->
-    <x-nav-bar :menu="[
-        ['name' => 'Home', 'url' => '/home'],
-        ['name' => 'Learn', 'url' => '/learn'],
-        ['name' => 'Practice', 'url' => '/practice'],
-    ]" :showMenu="true" :showSettings="true" />
+    <x-navigation type="general" :menu="$menu ?? []" :showAuthLinks="true" />
 
     <!-- Main Content -->
     <x-card.primary-card class="mt-6 bg-gray-300 ">

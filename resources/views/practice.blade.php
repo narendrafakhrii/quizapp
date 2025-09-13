@@ -18,11 +18,7 @@
 
 <body>
     <!-- Navigation Bar -->
-    <x-nav-bar :menu="[
-        ['name' => 'Home', 'url' => '/home'],
-        ['name' => 'Learn', 'url' => '/learn'],
-        ['name' => 'Practice', 'url' => '/practice'],
-    ]" :showMenu="true" :showSettings="true" />
+    <x-navigation type="general" :menu="$menu ?? []" :showAuthLinks="true" />
 
 
     <div class="relative isolate px-6 lg:px-8">

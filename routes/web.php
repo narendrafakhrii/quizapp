@@ -34,16 +34,31 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 Route::get('/home', function () {
-    return view('home');
-});
+    $menu = [
+        ['name' => 'Home', 'url' => '/home'],
+        ['name' => 'Learn', 'url' => '/learn'],
+        ['name' => 'Practice', 'url' => '/practice'],
+    ];
+    return view('home', compact('menu'));
+})->name('home');
 
 Route::get('/learn', function () {
-    return view('learn');
-});
+    $menu = [
+        ['name' => 'Home', 'url' => '/home'],
+        ['name' => 'Learn', 'url' => '/learn'],
+        ['name' => 'Practice', 'url' => '/practice'],
+    ];
+    return view('learn', compact('menu'));
+})->name('learn');
 
 Route::get('/practice', function () {
-    return view('practice');
-});
+    $menu = [
+        ['name' => 'Home', 'url' => '/home'],
+        ['name' => 'Learn', 'url' => '/learn'],
+        ['name' => 'Practice', 'url' => '/practice'],
+    ];
+    return view('practice', compact('menu'));
+})->name('practice');
 
 Route::get('/level', function () {
     return view('level');
