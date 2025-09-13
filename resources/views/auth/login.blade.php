@@ -35,6 +35,10 @@
                 <span class="ms-2 text-sm text-gray-600 p-2">{{ __('Remember me') }}</span>
             </label>
 
+<<<<<<< HEAD
+        <div class="flex items-center justify-end mt-4">
+=======
+>>>>>>> b49f9c21450b5bef8add2d293bbd3988c2b1c152
             @if (Route::has('password.request'))
                 <a class="text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     href="{{ route('password.request') }}">
