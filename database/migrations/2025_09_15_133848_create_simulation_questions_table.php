@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->text('question'); // isi pertanyaan atau judul passage
             $table->enum('type', ['option', 'true_false', 'multiple', 'text', 'passage'])
-                ->default('option'); // tambahkan 'passage' untuk literasi/tabel
+                  ->default('option'); // tipe soal
             $table->string('subject')->nullable(); 
-            $table->json('passage_content')->nullable(); // untuk simpan tabel atau literasi
+            $table->foreignId('passage_id')->nullable()->constrained('passages')->nullOnDelete();
             $table->timestamps();
         });
     }

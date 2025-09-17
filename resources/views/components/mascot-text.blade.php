@@ -29,6 +29,6 @@
         }
 
         updateText(); // tampilkan teks pertama
-        setInterval(updateText, 60000); // Interval
+        setInterval(updateText, 30000); // Interval (milisekon)
     });
 </script>

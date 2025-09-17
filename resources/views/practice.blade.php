@@ -39,7 +39,7 @@
                 <p class="text-gray-600 mt-2">Uji kemampuanmu dan hadapi soal-soal ala UTBK mulai dari grammar,
                     vocabulary, hingga reading, dan buktikan sejauh mana kamu siap menghadapi ujian sebenarnya.</p>
                 <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-                    onclick="window.location.href='{{ route('simulation') }}'">Lihat</button>
+                    onclick="window.location.href='{{ route('simulation.show') }}'">Lihat</button>
             </div>
         </div>
 </body>
