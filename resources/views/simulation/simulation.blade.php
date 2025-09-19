@@ -1,13 +1,14 @@
 <x-layout>
-
-    <section>
+    <section x-data="{ showMainContent: false }">
+        {{-- Rule Simulation - Ditampilkan pertama kali --}}
         <template x-if="!showMainContent">
             @include('simulation.partials.rule-simulation')
         </template>
 
-        {{-- Simulation --}}
+        {{-- Main Simulation Content - Ditampilkan setelah klik mulai --}}
         <div x-data="quizApp()" x-init="init()" x-show="showMainContent" x-cloak
             class="flex flex-col h-screen">
+
             {{-- Header bar --}}
             <div class="flex justify-between items-center bg-white w-full h-14 shadow flex-shrink-0 px-6">
                 <div class="flex items-center space-x-4">
@@ -116,7 +117,6 @@
                         </div>
                     </div>
 
-
                     {{-- Question & Answers --}}
                     <div class="primary-card h-[450px] flex flex-col pl-6 border-l-4 border-blue-300">
                         <template x-if="!currentQuestion">
@@ -197,7 +197,6 @@
         </div>
     </section>
 
-
     @push('scripts')
         <script>
             function quizApp() {
@@ -220,12 +219,7 @@
                     timerInterval: null,
 
                     init() {
-                        window.addEventListener('start-simulation', () => {
-                            this.$root.showMainContent = true
-                            this.startTimer();
-                            this.loadCurrentQuestion();
-                            console.log('Loaded questions:', this.questions);
-                        })
+                        // Event listener sudah tidak diperlukan karena akses langsung ke parent scope
                     },
 
                     get currentQuestion() {
