@@ -19,7 +19,8 @@
 <body class="font-sans antialiased flex flex-col min-h-screen">
     <x-navigation type="landing" :showAuthLinks="true" />
 
-    <main class="flex flex-col flex-grow items-center justify-center text-center">
+    <main
+        class="flex flex-col flex-grow items-center justify-center text-center bg-[url('./assets/image/start-background.png')]">
         <h1 class="text-5xl font-extrabold tracking-tight text-balance sm:text-7xl">
             {{ config('app.name') }}
         </h1>

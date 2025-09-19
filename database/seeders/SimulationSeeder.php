@@ -337,17 +337,17 @@ class SimulationSeeder extends Seeder
         ]);
 
         // === PASSAGE 7: Lullabies (Questions 21-25) ===
-$passage7 = Passage::create([
-    'title' => 'The Science of Lullabies',
-    'type' => 'paragraph',
-    'subject' => 'English',
-    'content' => [
-        ['content' => 'The song comes alive as night draws in. Beneath the blanket, between the folds of cradling arms, in rooms across the world, a hidden chorus of caregivers fills the night with song to an audience of children. They are singing lullabies.'],
-        ['content' => 'Across cultures, lullabies echo the histories of those who sing them. There is a growing body of research about how lullabies help soothe both caregiver and child.'],
-        ['content' => 'Laura Cirelli, professor of developmental psychology at the University of Toronto, studies the science of maternal song. She found that when mothers sang lullabies, stress levels dropped not just for the baby but for mothers as well. In her most recent work, she discovered that familiar songs soothed babies the most—more than speaking or hearing unfamiliar songs.'],
-        ['content' => 'However, lullabies tend to have collections of features across cultures. The Harvard University\'s Music Lab project found that people can hear universal traits in music—even when they are listening to songs from other cultures. The project asked 29,000 participants to listen to 118 songs and identify whether it was a healing song, a dance song, a love song, or a lullaby, with the findings statistically showing that people are most consistent in identifying lullabies.'],
-    ],
-]);
+        $passage7 = Passage::create([
+            'title' => 'The Science of Lullabies',
+            'type' => 'paragraph',
+            'subject' => 'English',
+            'content' => [
+                ['content' => 'The song comes alive as night draws in. Beneath the blanket, between the folds of cradling arms, in rooms across the world, a hidden chorus of caregivers fills the night with song to an audience of children. They are singing lullabies.'],
+                ['content' => 'Across cultures, lullabies echo the histories of those who sing them. There is a growing body of research about how lullabies help soothe both caregiver and child.'],
+                ['content' => 'Laura Cirelli, professor of developmental psychology at the University of Toronto, studies the science of maternal song. She found that when mothers sang lullabies, stress levels dropped not just for the baby but for mothers as well. In her most recent work, she discovered that familiar songs soothed babies the most—more than speaking or hearing unfamiliar songs.'],
+                ['content' => 'However, lullabies tend to have collections of features across cultures. The Harvard University\'s Music Lab project found that people can hear universal traits in music—even when they are listening to songs from other cultures. The project asked 29,000 participants to listen to 118 songs and identify whether it was a healing song, a dance song, a love song, or a lullaby, with the findings statistically showing that people are most consistent in identifying lullabies.'],
+            ],
+        ]);
 
 $this->createQuestionsForPassage($passage7, [
     [

@@ -34,6 +34,17 @@
             image="https://placehold.co/600x400" buttonText="Lihat" />
     </div>
 
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 pt-35 max-w-6xl mx-auto text-center">
+        <x-card.learn-card title="Grammar" description="Deskripsi singkat tentang kartu ini."
+            image="https://placehold.co/600x400" buttonText="Lihat" />
+
+        <x-card.learn-card title="Vocabulary" description="Deskripsi singkat tentang kartu ini."
+            image="https://placehold.co/600x400" buttonText="Lihat" />
+
+        <x-card.learn-card title="Reading Comprehension" description="Deskripsi singkat tentang kartu ini."
+            image="https://placehold.co/600x400" buttonText="Lihat" />
+    </div>
+
 </body>
 
 </html>
