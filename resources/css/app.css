@@ -4,3 +4,55 @@
 [x-cloak] {
     display: none !important;
 }
+
+/* Custom scrollbar styles for simulation */
+.scrollbar-thin {
+    scrollbar-width: thin;
+}
+
+.scrollbar-thumb-gray-400::-webkit-scrollbar-thumb {
+    background-color: #9ca3af;
+    border-radius: 6px;
+}
+
+.scrollbar-thumb-gray-500:hover::-webkit-scrollbar-thumb {
+    background-color: #6b7280;
+}
+
+.scrollbar-thumb-blue-400::-webkit-scrollbar-thumb {
+    background-color: #60a5fa;
+    border-radius: 6px;
+}
+
+.scrollbar-thumb-blue-500:hover::-webkit-scrollbar-thumb {
+    background-color: #3b82f6;
+}
+
+.scrollbar-track-gray-200::-webkit-scrollbar-track {
+    background-color: #e5e7eb;
+    border-radius: 6px;
+}
+
+.scrollbar-track-blue-100::-webkit-scrollbar-track {
+    background-color: #dbeafe;
+    border-radius: 6px;
+}
+
+/* Webkit scrollbar styling */
+.scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+    border-radius: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+/* Smooth scrolling behavior */
+.overflow-y-auto {
+    scroll-behavior: smooth;
+}

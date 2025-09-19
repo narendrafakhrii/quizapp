@@ -21,11 +21,11 @@
         <x-card.primary-card class="p-6 flex-1 mt-4 overflow-hidden" style="max-height: calc(100vh - 120px)">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
                 {{-- Passage --}}
-                <div class="text-sm leading-relaxed lg:pr-6 flex flex-col">
+                <div class="text-sm leading-relaxed lg:pr-6 flex flex-col overflow-hidden">
                     <template x-if="currentQuestion && currentQuestion.passage_content">
                         <div class="flex flex-col h-full">
                             <p class="font-semibold mb-3 flex-shrink-0">Read the passage carefully!</p>
-                            <div class="bg-gray-50 p-4 rounded-lg border flex-1 overflow-auto">
+                            <div class="bg-gray-50 p-4 rounded-lg border flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 hover:scrollbar-thumb-gray-500" style="margin-bottom: 16px;">
                                 <template x-if="currentQuestion.passage_type === 'table'">
                                     <div class="overflow-x-auto">
                                         <table class="min-w-full border-collapse border border-gray-300">
@@ -85,7 +85,7 @@
                     <template x-if="!currentQuestion || !currentQuestion.passage_content">
                         <div class="flex flex-col h-full">
                             <p class="font-semibold mb-3 flex-shrink-0">Read the passage carefully!</p>
-                            <div class="bg-gray-50 p-4 rounded-lg border flex-1 overflow-auto">
+                            <div class="bg-gray-50 p-4 rounded-lg border flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 hover:scrollbar-thumb-gray-500" style="margin-bottom: 16px;">
                                 <p class="text-gray-500 text-center">No passage content available for this question</p>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                 </div>
 
                 {{-- Question & Answers --}}
-                <div class="pl-6 border-l-4 border-blue-300 overflow-auto">
+                <div class="pl-6 border-l-4 border-blue-300 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-400 scrollbar-track-blue-100 hover:scrollbar-thumb-blue-500" style="margin-bottom: 16px;">
                     <template x-if="!currentQuestion">
                         <div>
                             <h3 class="font-semibold text-lg mb-2 text-gray-800">Loading...</h3>
@@ -109,7 +109,8 @@
                             {{-- Jawaban --}}
                             <div class="bg-blue-50 p-4 rounded-lg mb-6" x-show="currentQuestion.answers?.length > 0">
                                 <h4 class="font-medium mb-3 text-gray-800">Choose the correct answer:</h4>
-                                <template x-for="answer in currentQuestion.answers" :key="answer.id">
+                                <div class="space-y-2">
+                                    <template x-for="answer in currentQuestion.answers" :key="answer.id">
                                     <label
                                         class="flex items-start space-x-3 cursor-pointer hover:bg-white p-2 rounded transition"
                                         :class="{ 'bg-blue-100': selectedAnswer === answer.option }">
@@ -119,7 +120,8 @@
                                             class="form-radio mt-1 text-blue-600">
                                         <span class="text-gray-700" x-text="answer.option + '. ' + answer.text"></span>
                                     </label>
-                                </template>
+                                    </template>
+                                </div>
                             </div>
                         </div>
                     </template>
