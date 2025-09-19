@@ -68,8 +68,10 @@ Route::get('/level', function () {
     return view('level');
 })->name('level');
 
-
-Route::get('/quiz', [QuizController::class, 'quiz'])->name('quiz');
+// Route untuk quiz dengan parameter level dan category
+Route::get('/quiz/{level?}/{category?}', [QuizController::class, 'quiz'])
+    ->where(['level' => 'newbie|intermediate|expert', 'category' => 'grammar|vocabulary|reading'])
+    ->name('quiz');
 
 // Route untuk simulation - taruh yang lebih spesifik dulu
 Route::get('/simulation/question/{id}', [SimulationController::class, 'getQuestion'])

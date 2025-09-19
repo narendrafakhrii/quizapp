@@ -21,11 +21,11 @@
         <h2 class="text-4xl font-bold mt-20">Level Quiz</h2>
     </header>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 pt-35 max-w-6xl mx-auto">
-        <x-card.level-card level="Newbie" description="Deskripsi singkat." href="{{ route('quiz') }}" />
+        <x-card.level-card level="Newbie" description="Level dasar untuk pemula. Soal-soal grammar fundamental." href="{{ route('quiz', ['level' => 'newbie', 'category' => 'grammar']) }}" />
 
-        <x-card.level-card level="Intermediate" description="Deskripsi singkat." href="{{ route('quiz') }}" />
+        <x-card.level-card level="Intermediate" description="Level menengah dengan grammar yang lebih kompleks." href="{{ route('quiz', ['level' => 'intermediate', 'category' => 'grammar']) }}" />
 
-        <x-card.level-card level="Expert" description="Deskripsi singkat." href="{{ route('quiz') }}" />
+        <x-card.level-card level="Expert" description="Level ahli dengan grammar tingkat lanjut." href="{{ route('quiz', ['level' => 'expert', 'category' => 'grammar']) }}" />
     </div>
 </body>
 
