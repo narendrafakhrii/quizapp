@@ -6,7 +6,7 @@ echo "🚀 Starting deployment..."
 composer install --no-dev --optimize-autoloader
 
 # Node dependencies
-npm ci --omit=dev
+npm install --omit=dev --force
 npm run build
 
 # Laravel optimize
