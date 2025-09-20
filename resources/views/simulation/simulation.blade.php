@@ -7,7 +7,7 @@
 
         {{-- Main Simulation Content - Ditampilkan setelah klik mulai --}}
         <div x-data="quizApp()" x-init="init()" x-show="showMainContent" x-cloak
-            class="flex flex-col h-screen">
+            x-on:start-simulation.window="startTimer(), loadCurrentQuestion()" class="flex flex-col h-screen">
 
             {{-- Header bar --}}
             <div class="flex justify-between items-center bg-white w-full h-14 shadow flex-shrink-0 px-6">
@@ -374,16 +374,26 @@
                     },
 
                     startTimer() {
-                        this.updateTimerDisplay();
-                        this.timerInterval = setInterval(() => {
-                            if (this.timeRemaining > 0) {
-                                this.timeRemaining--;
-                                this.updateTimerDisplay();
-                            } else {
-                                this.finishSimulation();
-                            }
-                        }, 1000);
+                        // jangan mulai dua kali
+                        if (this.timerInterval) return;
+
+                        // Pastikan DOM sudah render dulu
+                        this.$nextTick(() => {
+                            this.updateTimerDisplay();
+
+                            this.timerInterval = setInterval(() => {
+                                if (this.timeRemaining > 0) {
+                                    this.timeRemaining = Math.max(this.timeRemaining - 1, 0);
+                                    this.updateTimerDisplay();
+                                } else {
+                                    clearInterval(this.timerInterval);
+                                    this.timerInterval = null;
+                                    this.finishSimulation();
+                                }
+                            }, 1000);
+                        });
                     },
+
 
                     updateTimerDisplay() {
                         const minutes = String(Math.floor(this.timeRemaining / 60)).padStart(2, '0');
