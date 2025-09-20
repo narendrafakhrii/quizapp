@@ -9,7 +9,12 @@
 
         <!-- Tombol Close -->
         <button @click="showQuestionList = false"
-            class="absolute top-3 right-3 text-gray-600 hover:text-black text-lg z-10">✖</button>
+            class="absolute top-3 right-3 text-gray-600 hover:text-black text-lg z-10">
+            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                </path>
+            </svg>
+        </button>
 
         <div class="p-6 flex flex-col gap-4 h-full">
             <h2 class="text-xl font-semibold mb-2">Question List</h2>

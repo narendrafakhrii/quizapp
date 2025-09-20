@@ -1,4 +1,4 @@
-<div class="flex items-center justify-center min-h-screen bg-gray-50 p-6">
+<section class="flex items-center justify-center min-h-screen bg-gray-50 p-6">
     <div class="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-8 border">
         <h2 class="text-2xl font-bold mb-4">Simulasi UTBK</h2>
         <p class="text-gray-600 mb-6">
@@ -29,10 +29,10 @@
             <a href="{{ route('dashboard') }}" class="px-4 py-2 rounded-lg border text-gray-700 hover:bg-gray-50">
                 Batal
             </a>
-            <button @click="showMainContent = true; startTimer(); loadCurrentQuestion();"
+            <x-button.primary-button @click="showMainContent = true; startTimer(); loadCurrentQuestion();"
                 class="px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700">
-                Mulai Simulasi
-            </button>
+                {{ __('START SIMULATION') }}
+            </x-button.primary-button>
         </div>
     </div>
-</div>
+</section>

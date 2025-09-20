@@ -4,7 +4,8 @@
         {{-- Header Level Info --}}
         <div class="text-center mb-6">
             <h1 class="text-3xl font-bold text-gray-800 mb-2">Grammar Quiz</h1>
-            <div class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium
+            <div
+                class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium
                 {{ $level === 'newbie' ? 'bg-green-100 text-green-800' : '' }}
                 {{ $level === 'intermediate' ? 'bg-yellow-100 text-yellow-800' : '' }}
                 {{ $level === 'expert' ? 'bg-red-100 text-red-800' : '' }}">
@@ -88,8 +89,10 @@
             <p class="text-xl font-semibold">Skor kamu: <span x-text="score"></span> / <span x-text="total"></span></p>
             <div class="text-3xl mt-4" x-text="badge"></div>
             <div class="flex gap-4 justify-center">
-                <button @click="restart()" class="px-6 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700">Coba Lagi</button>
-                <a href="{{ route('level') }}" class="px-6 py-2 rounded-xl bg-gray-600 text-white hover:bg-gray-700">Pilih Level Lain</a>
+                <button @click="restart()" class="px-6 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700">Coba
+                    Lagi</button>
+                <a href="{{ route('level') }}"
+                    class="px-6 py-2 rounded-xl bg-gray-600 text-white hover:bg-gray-700">Pilih Level Lain</a>
             </div>
         </div>
 

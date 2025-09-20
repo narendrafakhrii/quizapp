@@ -18,7 +18,7 @@
                 </div>
                 <div class="flex items-center space-x-4">
                     <p class="text-sm font-mono font-bold border-2 border-red-600 py-1 px-3 rounded-md">
-                        {{ __('Time Remaining') }} <span id="timer">00:15:00</span>
+                        {{ __('Time Remaining') }} <span id="timer"></span>
                     </p>
                     <x-button.primary-button @click="showQuestionList = true">
                         {{ __('Question List') }}
@@ -184,15 +184,32 @@
                 </div>
 
                 <div class="justify-self-center md:justify-self-end">
-                    <x-button.primary-button class="bg-blue-500 hover:bg-blue-600" :disabled="true"
-                        x-bind:disabled="currentIndex >= questions.length - 1" @click="nextQuestion()">
-                        {{ __('Next Question') }}
-                    </x-button.primary-button>
+                    <!-- Tombol Next atau Finish berdasarkan posisi soal -->
+                    <template x-if="currentIndex < questions.length - 1">
+                        <x-button.primary-button class="bg-blue-500 hover:bg-blue-600" @click="nextQuestion()">
+                            {{ __('Next Question') }}
+                        </x-button.primary-button>
+                    </template>
+
+                    <template x-if="currentIndex === questions.length - 1">
+                        <x-button.primary-button class="bg-green-600 hover:bg-green-700"
+                            @click="showConfirmFinish = true">
+                            {{ __('Finish') }}
+                        </x-button.primary-button>
+                    </template>
                 </div>
             </div>
 
             {{-- Modal Question List --}}
             @include('simulation.partials.question-list')
+
+            {{-- Modal Confirm Finish --}}
+            @include('simulation.partials.confirm-finish')
+
+            {{-- Result Screen - Ditampilkan setelah simulasi selesai --}}
+            <template x-if="showResult">
+                @include('simulation.partials.result-simulation')
+            </template>
 
         </div>
     </section>
@@ -213,13 +230,22 @@
                     currentIndex: 0,
                     selectedAnswer: null,
                     showQuestionList: false,
+                    showConfirmFinish: false,
+                    showResult: false,
+                    showDetailedReview: false,
 
                     // Timer
                     timeRemaining: 45 * 60,
                     timerInterval: null,
+                    totalTime: 45 * 60,
+
+                    // Results
+                    finalScore: 0,
+                    correctAnswers: 0,
+                    wrongAnswers: 0,
 
                     init() {
-                        // Event listener sudah tidak diperlukan karena akses langsung ke parent scope
+                        // Initialization code
                     },
 
                     get currentQuestion() {
@@ -228,6 +254,87 @@
 
                     get isCurrentQuestionDoubtful() {
                         return this.currentQuestion ? this.currentQuestion.doubtful : false;
+                    },
+
+                    get answeredCount() {
+                        return this.questions.filter(q => q.selectedAnswer !== null).length;
+                    },
+
+                    get unansweredCount() {
+                        return this.questions.length - this.answeredCount;
+                    },
+
+                    get doubtfulCount() {
+                        return this.questions.filter(q => q.doubtful).length;
+                    },
+
+                    get timeLeftFormatted() {
+                        const minutes = Math.floor(this.timeRemaining / 60);
+                        const seconds = this.timeRemaining % 60;
+                        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    },
+
+                    get timeUsedFormatted() {
+                        const timeUsed = this.totalTime - this.timeRemaining;
+                        const minutes = Math.floor(timeUsed / 60);
+                        const seconds = timeUsed % 60;
+                        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    },
+
+                    get averageTimePerQuestion() {
+                        const timeUsed = this.totalTime - this.timeRemaining;
+                        return Math.round(timeUsed / this.questions.length);
+                    },
+
+                    get accuracyPercentage() {
+                        if (this.answeredCount === 0) return 0;
+                        return Math.round((this.correctAnswers / this.answeredCount) * 100);
+                    },
+
+                    get performanceLevel() {
+                        const percentage = this.accuracyPercentage;
+
+                        if (percentage >= 90) {
+                            return {
+                                title: 'Excellent!',
+                                message: 'Performa Anda sangat luar biasa! Pertahankan prestasi ini.',
+                                icon: '🎉',
+                                bgClass: 'bg-green-50',
+                                borderClass: 'border-green-400',
+                                textClass: 'text-green-800',
+                                descClass: 'text-green-600'
+                            };
+                        } else if (percentage >= 75) {
+                            return {
+                                title: 'Good Job!',
+                                message: 'Performa Anda baik. Terus tingkatkan kemampuan Anda.',
+                                icon: '👏',
+                                bgClass: 'bg-blue-50',
+                                borderClass: 'border-blue-400',
+                                textClass: 'text-blue-800',
+                                descClass: 'text-blue-600'
+                            };
+                        } else if (percentage >= 60) {
+                            return {
+                                title: 'Keep Trying!',
+                                message: 'Performa cukup baik. Perbanyak latihan untuk hasil yang lebih baik.',
+                                icon: '💪',
+                                bgClass: 'bg-yellow-50',
+                                borderClass: 'border-yellow-400',
+                                textClass: 'text-yellow-800',
+                                descClass: 'text-yellow-600'
+                            };
+                        } else {
+                            return {
+                                title: 'Need Improvement',
+                                message: 'Jangan menyerah! Perbanyak belajar dan latihan soal.',
+                                icon: '📚',
+                                bgClass: 'bg-red-50',
+                                borderClass: 'border-red-400',
+                                textClass: 'text-red-800',
+                                descClass: 'text-red-600'
+                            };
+                        }
                     },
 
                     loadCurrentQuestion() {
@@ -273,8 +380,7 @@
                                 this.timeRemaining--;
                                 this.updateTimerDisplay();
                             } else {
-                                clearInterval(this.timerInterval);
-                                alert("Time is up!");
+                                this.finishSimulation();
                             }
                         }, 1000);
                     },
@@ -282,7 +388,46 @@
                     updateTimerDisplay() {
                         const minutes = String(Math.floor(this.timeRemaining / 60)).padStart(2, '0');
                         const seconds = String(this.timeRemaining % 60).padStart(2, '0');
-                        document.getElementById('timer').textContent = `00:${minutes}:${seconds}`;
+                        const timerElement = document.getElementById('timer');
+                        if (timerElement) {
+                            timerElement.textContent = `00:${minutes}:${seconds}`;
+                        }
+                    },
+
+                    calculateScore() {
+                        this.correctAnswers = 0;
+                        this.wrongAnswers = 0;
+
+                        this.questions.forEach(question => {
+                            if (question.selectedAnswer !== null) {
+                                const correctAnswer = question.answers.find(a => a.is_correct);
+                                if (correctAnswer && question.selectedAnswer === correctAnswer.option) {
+                                    this.correctAnswers++;
+                                } else {
+                                    this.wrongAnswers++;
+                                }
+                            }
+                        });
+
+                        // Scoring system: +4 for correct, -1 for wrong, 0 for unanswered
+                        this.finalScore = (this.correctAnswers * 4) - (this.wrongAnswers * 1);
+                    },
+
+                    finishSimulation() {
+                        // Clear timer
+                        if (this.timerInterval) {
+                            clearInterval(this.timerInterval);
+                        }
+
+                        // Calculate final score
+                        this.calculateScore();
+
+                        // Close any open modals
+                        this.showConfirmFinish = false;
+                        this.showQuestionList = false;
+
+                        // Show results
+                        this.showResult = true;
                     }
                 }
             }
