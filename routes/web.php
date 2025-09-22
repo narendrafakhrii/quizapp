@@ -43,7 +43,7 @@ Route::get('/home', function () {
 })->name('home');
 
 Route::get('/learn', [LearnController::class, 'index'])->name('learn.index');
-Route::get('/learn/{id}', [LearnController::class, 'show'])->name('learn.show');
+Route::get('/learn/{group}', [LearnController::class, 'show'])->name('learn.show');
 
 Route::get('/practice', function () {
     return view('practice');

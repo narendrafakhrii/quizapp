@@ -11,13 +11,22 @@ class LearnSeeder extends Seeder
 {
     public function run(): void
     {
+        // Hapus data lama
+        LearnAnswer::query()->delete();
+        LearnQuestion::query()->delete();
+        Learn::query()->delete();
+
         /*
         |--------------------------------------------------------------------------
-        | SLIDE 1 – Parts of Speech (Materi)
+        | LEARN 1 - Parts of Speech (3 slides total)
         |--------------------------------------------------------------------------
         */
-        $learn1 = Learn::create([
+        
+        // Slide 1: Materi Parts of Speech
+        $learn1_slide1 = Learn::create([
             'title' => 'Parts of Speech',
+            'slide_type' => 'material',
+            'slide_number' => 1,
             'content' => 'Dalam bahasa Inggris, kata dibagi menjadi beberapa kelas kata utama:
 
 • Noun → kata benda (book, car, happiness)
@@ -27,34 +36,61 @@ class LearnSeeder extends Seeder
 • Pronoun → kata ganti (he, she, it, they)
 • Preposition → kata depan (in, on, at, with)
 • Conjunction → kata sambung (and, but, because)
-• Interjection → kata seru (oh!, wow!)'
+• Interjection → kata seru (oh!, wow!)',
+            'learn_group' => 'parts-of-speech'
         ]);
 
-        /*
-        |--------------------------------------------------------------------------
-        | SLIDE 2 – Parts of Speech Quiz 1
-        |--------------------------------------------------------------------------
-        */
-        $learn2 = Learn::create([
+        // Slide 2: Quiz 1 - Parts of Speech
+        $learn1_slide2 = Learn::create([
             'title' => 'Parts of Speech',
-            'content' => ''
+            'slide_type' => 'quiz',
+            'slide_number' => 2,
+            'content' => null,
+            'learn_group' => 'parts-of-speech'
         ]);
 
-        $q1 = LearnQuestion::create(['learn_id' => $learn2->id, 'question_text' => 'I have _____ apple.']);
+        $q1 = LearnQuestion::create([
+            'learn_id' => $learn1_slide2->id, 
+            'question_text' => 'I have _____ apple.'
+        ]);
         LearnAnswer::insert([
+            ['learn_question_id' => $q1->id, 'answer_text' => 'a', 'is_correct' => false],
             ['learn_question_id' => $q1->id, 'answer_text' => 'an', 'is_correct' => true],
             ['learn_question_id' => $q1->id, 'answer_text' => 'the', 'is_correct' => false],
             ['learn_question_id' => $q1->id, 'answer_text' => 'some', 'is_correct' => false],
-            ['learn_question_id' => $q1->id, 'answer_text' => 'any', 'is_correct' => false],
+        ]);
+
+        // Slide 3: Quiz 2 - Parts of Speech
+        $learn1_slide3 = Learn::create([
+            'title' => 'Parts of Speech',
+            'slide_type' => 'quiz',
+            'slide_number' => 3,
+            'content' => null,
+            'learn_group' => 'parts-of-speech'
+        ]);
+
+        $q2 = LearnQuestion::create([
+            'learn_id' => $learn1_slide3->id, 
+            'question_text' => 'This is _____ book.'
+        ]);
+        LearnAnswer::insert([
+            ['learn_question_id' => $q2->id, 'answer_text' => 'I', 'is_correct' => false],
+            ['learn_question_id' => $q2->id, 'answer_text' => 'me', 'is_correct' => false],
+            ['learn_question_id' => $q2->id, 'answer_text' => 'my', 'is_correct' => true],
+            ['learn_question_id' => $q2->id, 'answer_text' => 'mine', 'is_correct' => false],
         ]);
 
         /*
         |--------------------------------------------------------------------------
-        | SLIDE 3 – Subject-Verb Agreement (Materi)
+        | LEARN 2 - Subject-Verb Agreement (3 slides total)
         |--------------------------------------------------------------------------
         */
-        $learn3 = Learn::create([
-            'title' => 'Subject–Verb Agreement',
+        
+        // Slide 1: Materi Subject-Verb Agreement
+        $learn2_slide1 = Learn::create([
+            'title' => 'Subject-Verb Agreement',
+            'slide_type' => 'material',
+            'slide_number' => 1,
             'content' => 'Aturan dasar dalam bahasa Inggris:
 
 • Subjek tunggal → verb + s/es
@@ -66,52 +102,61 @@ class LearnSeeder extends Seeder
 • "I" & "You" → selalu pakai verb dasar
   Contoh: I go, You like
 
-Penting untuk selalu memperhatikan kesesuaian antara subjek dan kata kerja dalam kalimat.'
+Penting untuk selalu memperhatikan kesesuaian antara subjek dan kata kerja dalam kalimat.',
+            'learn_group' => 'subject-verb-agreement'
         ]);
 
-        /*
-        |--------------------------------------------------------------------------
-        | SLIDE 4 – Subject-Verb Agreement Quiz 1
-        |--------------------------------------------------------------------------
-        */
-        $learn4 = Learn::create([
-            'title' => 'Subject–Verb Agreement',
-            'content' => ''
+        // Slide 2: Quiz 1 - Subject-Verb Agreement
+        $learn2_slide2 = Learn::create([
+            'title' => 'Subject-Verb Agreement',
+            'slide_type' => 'quiz',
+            'slide_number' => 2,
+            'content' => null,
+            'learn_group' => 'subject-verb-agreement'
         ]);
 
-        $q2 = LearnQuestion::create(['learn_id' => $learn4->id, 'question_text' => 'She ____ to school every day.']);
+        $q3 = LearnQuestion::create([
+            'learn_id' => $learn2_slide2->id, 
+            'question_text' => 'She _____ to school every day.'
+        ]);
         LearnAnswer::insert([
-            ['learn_question_id' => $q2->id, 'answer_text' => 'go', 'is_correct' => false],
-            ['learn_question_id' => $q2->id, 'answer_text' => 'goes', 'is_correct' => true],
-            ['learn_question_id' => $q2->id, 'answer_text' => 'going', 'is_correct' => false],
-            ['learn_question_id' => $q2->id, 'answer_text' => 'gone', 'is_correct' => false],
+            ['learn_question_id' => $q3->id, 'answer_text' => 'go', 'is_correct' => false],
+            ['learn_question_id' => $q3->id, 'answer_text' => 'goes', 'is_correct' => true],
+            ['learn_question_id' => $q3->id, 'answer_text' => 'going', 'is_correct' => false],
+            ['learn_question_id' => $q3->id, 'answer_text' => 'gone', 'is_correct' => false],
         ]);
 
-        /*
-        |--------------------------------------------------------------------------
-        | SLIDE 5 – Subject-Verb Agreement Quiz 2
-        |--------------------------------------------------------------------------
-        */
-        $learn5 = Learn::create([
-            'title' => 'Subject–Verb Agreement',
-            'content' => ''
+        // Slide 3: Quiz 2 - Subject-Verb Agreement
+        $learn2_slide3 = Learn::create([
+            'title' => 'Subject-Verb Agreement',
+            'slide_type' => 'quiz',
+            'slide_number' => 3,
+            'content' => null,
+            'learn_group' => 'subject-verb-agreement'
         ]);
 
-        $q3 = LearnQuestion::create(['learn_id' => $learn5->id, 'question_text' => 'They ____ football every Sunday.']);
+        $q4 = LearnQuestion::create([
+            'learn_id' => $learn2_slide3->id, 
+            'question_text' => 'They _____ football every Sunday.'
+        ]);
         LearnAnswer::insert([
-            ['learn_question_id' => $q3->id, 'answer_text' => 'play', 'is_correct' => true],
-            ['learn_question_id' => $q3->id, 'answer_text' => 'plays', 'is_correct' => false],
-            ['learn_question_id' => $q3->id, 'answer_text' => 'playing', 'is_correct' => false],
-            ['learn_question_id' => $q3->id, 'answer_text' => 'played', 'is_correct' => false],
+            ['learn_question_id' => $q4->id, 'answer_text' => 'play', 'is_correct' => true],
+            ['learn_question_id' => $q4->id, 'answer_text' => 'plays', 'is_correct' => false],
+            ['learn_question_id' => $q4->id, 'answer_text' => 'playing', 'is_correct' => false],
+            ['learn_question_id' => $q4->id, 'answer_text' => 'played', 'is_correct' => false],
         ]);
 
         /*
         |--------------------------------------------------------------------------
-        | SLIDE 6 – Tenses Dasar (Materi)
+        | LEARN 3 - Tenses (3 slides total)
         |--------------------------------------------------------------------------
         */
-        $learn6 = Learn::create([
-            'title' => 'Tenses Dasar',
+        
+        // Slide 1: Materi Tenses
+        $learn3_slide1 = Learn::create([
+            'title' => 'Basic Tenses',
+            'slide_type' => 'material',
+            'slide_number' => 1,
             'content' => 'Simple Present vs Simple Past:
 
 • Simple Present: Fakta atau kebiasaan
@@ -124,79 +169,48 @@ Kata kunci:
 • Present → always, usually, every day
 • Past → yesterday, last night, two days ago
 
-Gunakan tenses yang tepat sesuai dengan waktu kejadian.'
+Gunakan tenses yang tepat sesuai dengan waktu kejadian.',
+            'learn_group' => 'basic-tenses'
         ]);
 
-        /*
-        |--------------------------------------------------------------------------
-        | SLIDE 7 – Tenses Quiz 1
-        |--------------------------------------------------------------------------
-        */
-        $learn7 = Learn::create([
-            'title' => 'Tenses Dasar',
-            'content' => ''
+        // Slide 2: Quiz 1 - Tenses
+        $learn3_slide2 = Learn::create([
+            'title' => 'Basic Tenses',
+            'slide_type' => 'quiz',
+            'slide_number' => 2,
+            'content' => null,
+            'learn_group' => 'basic-tenses'
         ]);
 
-        $q4 = LearnQuestion::create(['learn_id' => $learn7->id, 'question_text' => 'I ____ English every day.']);
+        $q5 = LearnQuestion::create([
+            'learn_id' => $learn3_slide2->id, 
+            'question_text' => 'I _____ English every day.'
+        ]);
         LearnAnswer::insert([
-            ['learn_question_id' => $q4->id, 'answer_text' => 'study', 'is_correct' => true],
-            ['learn_question_id' => $q4->id, 'answer_text' => 'studied', 'is_correct' => false],
-            ['learn_question_id' => $q4->id, 'answer_text' => 'studying', 'is_correct' => false],
-            ['learn_question_id' => $q4->id, 'answer_text' => 'studies', 'is_correct' => false],
+            ['learn_question_id' => $q5->id, 'answer_text' => 'study', 'is_correct' => true],
+            ['learn_question_id' => $q5->id, 'answer_text' => 'studied', 'is_correct' => false],
+            ['learn_question_id' => $q5->id, 'answer_text' => 'studying', 'is_correct' => false],
+            ['learn_question_id' => $q5->id, 'answer_text' => 'studies', 'is_correct' => false],
         ]);
 
-        /*
-        |--------------------------------------------------------------------------
-        | SLIDE 8 – Pronouns (Materi)
-        |--------------------------------------------------------------------------
-        */
-        $learn8 = Learn::create([
-            'title' => 'Pronouns',
-            'content' => 'Jenis-jenis pronoun dalam bahasa Inggris:
-
-• Subject Pronoun: I, you, he, she, it, we, they
-• Object Pronoun: me, you, him, her, it, us, them  
-• Possessive Adjective: my, your, his, her, its, our, their
-• Possessive Pronoun: mine, yours, his, hers, ours, theirs
-
-Gunakan pronoun yang tepat sesuai dengan fungsinya dalam kalimat.'
+        // Slide 3: Quiz 2 - Tenses
+        $learn3_slide3 = Learn::create([
+            'title' => 'Basic Tenses',
+            'slide_type' => 'quiz',
+            'slide_number' => 3,
+            'content' => null,
+            'learn_group' => 'basic-tenses'
         ]);
 
-        /*
-        |--------------------------------------------------------------------------
-        | SLIDE 9 – Pronouns Quiz 1
-        |--------------------------------------------------------------------------
-        */
-        $learn9 = Learn::create([
-            'title' => 'Pronouns',
-            'content' => ''
+        $q6 = LearnQuestion::create([
+            'learn_id' => $learn3_slide3->id, 
+            'question_text' => 'Yesterday, I _____ to the park.'
         ]);
-
-        $q5 = LearnQuestion::create(['learn_id' => $learn9->id, 'question_text' => 'This is my brother. ____ is tall.']);
         LearnAnswer::insert([
-            ['learn_question_id' => $q5->id, 'answer_text' => 'He', 'is_correct' => true],
-            ['learn_question_id' => $q5->id, 'answer_text' => 'Him', 'is_correct' => false],
-            ['learn_question_id' => $q5->id, 'answer_text' => 'His', 'is_correct' => false],
-            ['learn_question_id' => $q5->id, 'answer_text' => 'Her', 'is_correct' => false],
-        ]);
-
-        /*
-        |--------------------------------------------------------------------------
-        | SLIDE 10 – Adjectives & Adverbs (Materi)
-        |--------------------------------------------------------------------------
-        */
-        $learn10 = Learn::create([
-            'title' => 'Adjectives & Adverbs',
-            'content' => 'Perbedaan Adjective dan Adverb:
-
-• Adjective: menerangkan noun (kata benda)
-  Contoh: She is a smart student
-
-• Adverb: menerangkan verb, adjective, atau adverb lain
-  Contoh: She runs quickly
-
-• Banyak adverb terbentuk dari adjective + -ly
-  Contoh: quick → quickly, careful → carefully'
+            ['learn_question_id' => $q6->id, 'answer_text' => 'go', 'is_correct' => false],
+            ['learn_question_id' => $q6->id, 'answer_text' => 'goes', 'is_correct' => false],
+            ['learn_question_id' => $q6->id, 'answer_text' => 'went', 'is_correct' => true],
+            ['learn_question_id' => $q6->id, 'answer_text' => 'going', 'is_correct' => false],
         ]);
     }
 }
