@@ -35,7 +35,7 @@
                     {{-- Show Menu (Home, Learn, Practice) --}}
                     @if (!empty($menu))
                         @foreach ($menu as $item)
-                            <x-nav-link :href="$item['url']" :active="request()->is(ltrim($item['url'], '/'))">
+                            <x-nav-link :href="$item['url']" :active="request()->is(trim(parse_url($item['url'], PHP_URL_PATH), '/'))">
                                 {{ $item['name'] }}
                             </x-nav-link>
                         @endforeach
@@ -219,7 +219,7 @@
                         @if (!empty($menu))
                             @foreach ($menu as $item)
                                 <a href="{{ $item['url'] }}"
-                                    class="block py-3 text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors {{ request()->is(ltrim($item['url'], '/')) ? 'text-blue-600' : '' }}">
+                                    class="block py-3 text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors {{ request()->is(trim(parse_url($item['url'], PHP_URL_PATH), '/')) ? 'text-blue-600' : '' }}">
                                     {{ $item['name'] }}
                                 </a>
                             @endforeach

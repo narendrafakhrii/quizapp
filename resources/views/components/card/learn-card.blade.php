@@ -2,7 +2,7 @@
     'title' => 'Judul Kartu',
     'description' => 'Deskripsi singkat tentang kartu ini.',
     'image' => 'https://placehold.co/600x400',
-    'href' => route('level'),
+    'href' => '#',
     'buttonText' => 'Lihat',
 ])
 

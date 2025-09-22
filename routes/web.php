@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\LearnController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\SimulationController;  
 use App\Models\User;
@@ -38,31 +39,16 @@ Route::controller(SocialiteController::class)->group(function() {
 require __DIR__.'/auth.php';
 
 Route::get('/home', function () {
-    $menu = [
-        ['name' => 'Home', 'url' => '/home'],
-        ['name' => 'Learn', 'url' => '/learn'],
-        ['name' => 'Practice', 'url' => '/practice'],
-    ];
-    return view('home', compact('menu'));
+    return view('home');
 })->name('home');
 
-Route::get('/learn', function () {
-    $menu = [
-        ['name' => 'Home', 'url' => '/home'],
-        ['name' => 'Learn', 'url' => '/learn'],
-        ['name' => 'Practice', 'url' => '/practice'],
-    ];
-    return view('learn', compact('menu'));
-})->name('learn');
+Route::get('/learn', [LearnController::class, 'index'])->name('learn.index');
+Route::get('/learn/{id}', [LearnController::class, 'show'])->name('learn.show');
 
 Route::get('/practice', function () {
-    $menu = [
-        ['name' => 'Home', 'url' => '/home'],
-        ['name' => 'Learn', 'url' => '/learn'],
-        ['name' => 'Practice', 'url' => '/practice'],
-    ];
-    return view('practice', compact('menu'));
+    return view('practice');
 })->name('practice');
+
 
 Route::get('/level', function () {
     return view('level');
@@ -80,6 +66,3 @@ Route::get('/simulation/question/{id}', [SimulationController::class, 'getQuesti
 
 Route::get('/simulation', [SimulationController::class, 'showSimulation'])
     ->name('simulation.show');
-
-
-
