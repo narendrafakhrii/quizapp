@@ -14,24 +14,25 @@ class LearnController extends Controller
     }
 
     // Tampilkan materi + kuis
-    public function show($id)
-    {
-        $learn = Learn::with('questions.answers')->findOrFail($id);
+public function show($id)
+{
+    $learn = Learn::with('questions.answers')->findOrFail($id);
 
-        // Ubah struktur supaya JS mengharapkan "options"
-        $learn->questions->transform(function ($q) {
-            return [
-                'id' => $q->id,
-                'question_text' => $q->question_text,
-                'options' => $q->answers->map(function ($a) {
-                    return [
-                        'answer_text' => $a->answer_text,
-                        'is_correct' => (bool)$a->is_correct,
-                    ];
-                }),
-            ];
-        });
+    $questions = $learn->questions->map(function ($q) {
+        return [
+            'id' => $q->id,
+            'question_text' => $q->question_text,
+            'options' => $q->answers->map(function ($a) {
+                return [
+                    'answer_text' => $a->answer_text,
+                    'is_correct' => (bool) $a->is_correct,
+                ];
+            })->toArray(),
+        ];
+    })->toArray(); // PENTING: harus array agar @json bekerja
 
-        return view('learn.learn-show', compact('learn'));
-    }
+    return view('learn.learn-show', compact('learn', 'questions'));
+}
+
+
 }

@@ -15,6 +15,6 @@ class LearnQuestion extends Model
 
     public function answers()
     {
-        return $this->hasMany(LearnAnswer::class);
+        return $this->hasMany(LearnAnswer::class)->orderBy('id');
     }
 }
