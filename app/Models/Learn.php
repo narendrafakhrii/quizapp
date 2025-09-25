@@ -7,45 +7,78 @@ use Illuminate\Database\Eloquent\Model;
 class Learn extends Model
 {
     protected $fillable = [
-        'title', 
-        'slide_type', 
-        'slide_number', 
-        'content', 
-        'learn_group'
+        'title',
+        'slide_type',      // 'material' atau 'quiz'
+        'slide_number',    // urutan slide
+        'content',         // isi materi jika material
+        'learn_group',      // kategori: grammar, synonym, reference, paraphrase
     ];
 
+    /**
+     * Relasi ke pertanyaan (hanya untuk slide quiz)
+     */
     public function questions()
     {
         return $this->hasMany(LearnQuestion::class);
     }
 
-    // Scope untuk mendapatkan slide berdasarkan group
+    /**
+     * Scope: ambil semua slide dari group tertentu, urut berdasarkan slide_number
+     */
     public function scopeByGroup($query, $group)
     {
-        return $query->where('learn_group', $group)->orderBy('slide_number');
+        return $query->where('learn_group', $group)
+            ->orderBy('slide_number');
     }
 
-    // Scope untuk mendapatkan hanya materi
+    /**
+     * Scope: hanya materi
+     */
     public function scopeMaterial($query)
     {
         return $query->where('slide_type', 'material');
     }
 
-    // Scope untuk mendapatkan hanya quiz
+    /**
+     * Scope: hanya quiz
+     */
     public function scopeQuiz($query)
     {
         return $query->where('slide_type', 'quiz');
     }
 
-    // Method untuk mengecek apakah slide ini adalah materi
-    public function isMaterial()
+    /**
+     * Cek tipe slide
+     */
+    public function isMaterial(): bool
     {
         return $this->slide_type === 'material';
     }
 
-    // Method untuk mengecek apakah slide ini adalah quiz
-    public function isQuiz()
+    public function isQuiz(): bool
     {
         return $this->slide_type === 'quiz';
+    }
+
+    /**
+     * Ambil slide berikutnya di group yang sama
+     */
+    public function nextSlide()
+    {
+        return self::byGroup($this->learn_group)
+            ->where('slide_number', '>', $this->slide_number)
+            ->orderBy('slide_number')
+            ->first();
+    }
+
+    /**
+     * Ambil slide sebelumnya di group yang sama
+     */
+    public function previousSlide()
+    {
+        return self::byGroup($this->learn_group)
+            ->where('slide_number', '<', $this->slide_number)
+            ->orderByDesc('slide_number')
+            ->first();
     }
 }

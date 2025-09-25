@@ -41,7 +41,6 @@ class ProfileController extends Controller
     /**
      * Update the user's profile photo.
      */
-
     public function updatePhoto(Request $request): RedirectResponse
     {
         $request->validate([
@@ -51,7 +50,7 @@ class ProfileController extends Controller
         $user = $request->user();
 
         if ($request->hasFile('photo')) {
-            // Delete 
+            // Delete
             if ($user->profile_photo_path) {
                 Storage::disk('public')->delete($user->profile_photo_path);
             }
@@ -66,23 +65,21 @@ class ProfileController extends Controller
     }
 
     /**
- * Delete the user's profile photo.
- */
-public function deletePhoto(Request $request): RedirectResponse
-{
-    $user = $request->user();
+     * Delete the user's profile photo.
+     */
+    public function deletePhoto(Request $request): RedirectResponse
+    {
+        $user = $request->user();
 
-    if ($user->profile_photo_path) {
-        
-        Storage::disk('public')->delete($user->profile_photo_path);
-        $user->profile_photo_path = null; 
-        $user->save();
+        if ($user->profile_photo_path) {
+
+            Storage::disk('public')->delete($user->profile_photo_path);
+            $user->profile_photo_path = null;
+            $user->save();
+        }
+
+        return back()->with('status', 'photo-deleted');
     }
-
-    return back()->with('status', 'photo-deleted');
-}
-
-
 
     /**
      * Delete the user's account.

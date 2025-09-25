@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('simulation_answers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('simulation_question_id')->constrained()->onDelete('cascade');
-            $table->string('option', 2)->nullable(); 
-            $table->longText('text')->nullable(); 
+            $table->string('option', 2)->nullable();
+            $table->longText('text')->nullable();
             $table->boolean('is_correct')->default(false); // jawaban benar/tidak
 
             $table->timestamps();

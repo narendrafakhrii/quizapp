@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ config('app.name') }}</title>
 
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,8 +33,19 @@
         </div>
     </div>
 
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6 p-6 pt-35 max-w-7xl mx-auto mt-4">
+        <h2 class="text-center justify-center font-bold text-3xl">{{ __('Play Quiz') }}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 p-6 pt-35 max-w-6xl mx-auto text-center">
+            @foreach ($categories as $cat)
+                <x-card.quiz-card :title="$cat['title']" :description="$cat['description']" :image="$cat['image']" :href="route('quiz.show', $cat['slug'])"
+                    buttonText="Lihat" />
+            @endforeach
+        </div>
+    </div>
+
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6 p-6 pt-35 max-w-6xl mx-auto">
-        <!-- Card 1 -->
+        <h2 class="text-center justify-center font-bold text-3xl">{{ __('Simulation') }}</h2>
+        <!-- Card Simulation -->
         <div class="bg-white rounded-2xl shadow-md overflow-hidden">
             <img src="https://placehold.co/600x400" alt="Gambar" class="w-full h-40 object-cover">
             <div class="p-4">
@@ -42,6 +56,11 @@
                     onclick="window.location.href='{{ route('simulation.show') }}'">Lihat</button>
             </div>
         </div>
+    </div>
+
+    {{-- Footer --}}
+    @include('layouts.footer')
+
 </body>
 
 </html>

@@ -50,9 +50,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getProfilePhotoUrlAttribute()
     {
         if ($this->profile_photo_path) {
-            return asset('storage/' . $this->profile_photo_path);
+            return asset('storage/'.$this->profile_photo_path);
         }
 
-        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&color=7F9CF5&background=EBF4FF';
+        return 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=7F9CF5&background=EBF4FF';
     }
 }

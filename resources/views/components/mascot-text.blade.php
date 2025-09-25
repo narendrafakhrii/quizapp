@@ -3,7 +3,9 @@
     $username = Auth::user()->name ?? 'Tamu';
 @endphp
 
-<div id="dynamic-text" class="text-xl font-bold text-center transition-opacity duration-500"></div>
+<div {{ $attributes->merge(['class' => 'sm:w-3/4 md:w-1/2 lg:w-1/3  mx-auto']) }}>
+    <div id="dynamic-text" class="text-xl font-bold text-center transition-opacity duration-500"></div>
+</div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {

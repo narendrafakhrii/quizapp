@@ -11,9 +11,12 @@ class SimulationQuestion extends Model
      * Tipe soal
      * ============================
      */
-    const TYPE_OPTION   = 'option';   // Single choice (1 jawaban benar)
+    const TYPE_OPTION = 'option';   // Single choice (1 jawaban benar)
+
     const TYPE_MULTIPLE = 'multiple'; // Multiple choice (lebih dari 1 jawaban benar)
-    const TYPE_FILL     = 'fill';     // Isian
+
+    const TYPE_FILL = 'fill';     // Isian
+
     const TYPE_MATCHING = 'matching'; // Menjodohkan
 
     /**
@@ -97,6 +100,7 @@ class SimulationQuestion extends Model
 
         if ($this->isMultipleChoice()) {
             $correctOptions = $this->answers()->where('is_correct', true)->pluck('option')->toArray();
+
             return empty(array_diff($correctOptions, $userAnswers)) && empty(array_diff($userAnswers, $correctOptions));
         }
 

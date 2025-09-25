@@ -3,71 +3,116 @@
 namespace App\Http\Controllers;
 
 use App\Models\Learn;
+use App\Models\LearnProgress;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LearnController extends Controller
 {
-    // List semua grup learn (hanya 3 card)
+    // Halaman daftar materi
     public function index()
     {
-        // Ambil satu learn dari setiap grup untuk ditampilkan sebagai card
-        $learns = Learn::select('learn_group', 'title')
-            ->groupBy('learn_group', 'title')
-            ->orderBy('learn_group')
-            ->get()
-            ->map(function ($learn) {
-                // Hitung total slide per grup
-                $totalSlides = Learn::where('learn_group', $learn->learn_group)->count();
-                $learn->total_slides = $totalSlides;
-                return $learn;
-            });
+        // Hardcode 4 materi utama
+        $learns = [
+            ['title' => 'Grammar', 'group' => 'grammar', 'slides' => 10, 'icon' => '📚'],
+                        ['title' => 'Vocabulary', 'group' => 'vocabulary', 'slides' => 36, 'icon' => '✏️'],
+                        [
+                            'title' => 'Reading Comprehension',
+                            'group' => 'reading-comprehension',
+                            'slides' => 12,
+                            'icon' => '📖',
+                        ],
+        ];
+
+        // Ambil progress user dari tabel learn_progress
+        $userId = Auth::id();
+        $progressData = LearnProgress::where('user_id', $userId)->get()->keyBy('learn_group');
+
+        // Gabungkan progress ke setiap item
+        $learns = collect($learns)->map(function ($item) use ($progressData) {
+        $item['progress'] = $progressData[$item['group']]->progress ?? 0;
+        return $item;
+    });
 
         return view('learn', compact('learns'));
     }
 
-    // Tampilkan semua slide dalam satu grup
+    // Halaman slide per materi
     public function show($group)
     {
-        // Ambil semua slide dalam grup ini, diurutkan berdasarkan slide_number
-        $slides = Learn::byGroup($group)
-            ->with(['questions.answers'])
+        // mapping slug → group di database
+        $map = [
+            'grammar' => 'grammar',
+            'vocabulary' => 'vocabulary',
+            'reading-comprehension' => 'reading-comprehension',
+        ];
+
+        $dbGroup = $map[$group] ?? $group;
+
+        // Ambil semua slide sesuai group
+        $slides = Learn::with(['questions.answers'])
+            ->where('learn_group', $dbGroup)
+            ->orderBy('slide_number', 'asc')
             ->get();
 
-        if ($slides->isEmpty()) {
-            abort(404, 'Learn group not found');
-        }
-
-        // Ambil title dari slide pertama
-        $title = $slides->first()->title;
-
-        // Format data untuk frontend
+        // Transform ke format JSON-friendly
         $slidesData = $slides->map(function ($slide) {
-            $slideData = [
+            return [
                 'id' => $slide->id,
-                'title' => $slide->title,
                 'slide_type' => $slide->slide_type,
-                'slide_number' => $slide->slide_number,
-                'content' => $slide->content,
+                'content' => $slide->content ?? '',
+                'question' => $slide->questions->isNotEmpty()
+                    ? [
+                        'id' => $slide->questions->first()->id,
+                        'question_text' => $slide->questions->first()->question_text,
+                        'answers' => $slide->questions->first()->answers->map(function ($a) {
+                            return [
+                                'id' => $a->id,
+                                'answer_text' => $a->answer_text,
+                                'is_correct' => (bool) $a->is_correct,
+                            ];
+                        })->values(),
+                    ]
+                    : null,
             ];
+        })->values();
 
-            // Jika ini quiz, tambahkan data pertanyaan
-            if ($slide->isQuiz() && $slide->questions->isNotEmpty()) {
-                $question = $slide->questions->first();
-                $slideData['question'] = [
-                    'id' => $question->id,
-                    'question_text' => $question->question_text,
-                    'answers' => $question->answers->map(function ($answer) {
-                        return [
-                            'id' => $answer->id,
-                            'answer_text' => $answer->answer_text,
-                            'is_correct' => (bool) $answer->is_correct,
-                        ];
-                    })->toArray(),
-                ];
-            }
+        // Ambil atau buat progress default user
+        $userId = Auth::id();
+        $progress = LearnProgress::firstOrCreate(
+            ['user_id' => $userId, 'learn_group' => $dbGroup],
+            ['progress' => 0]
+        );
 
-            return $slideData;
-        });
+        return view('learn.learn-show', [
+            'slidesData' => $slidesData->toArray(),
+            'title' => ucfirst(str_replace('-', ' ', $group)),
+            'group' => $dbGroup,
+            'progress' => $progress->progress,
+        ]);
+    }
 
-        return view('learn.learn-show', compact('slidesData', 'title', 'group'));
+       public function updateProgress(Request $request, $group)
+    {
+        $request->validate([
+            'progress' => 'required|integer|min:0|max:100',
+        ]);
+
+        $userId = Auth::id();
+
+        $progress = LearnProgress::updateOrCreate(
+            [
+                'user_id' => $userId,
+                'learn_group' => $group,
+            ],
+            [
+                'progress' => $request->progress,
+            ]
+        );
+
+        return response()->json([
+            'success' => true,
+            'progress' => $progress->progress,
+        ]);
     }
 }

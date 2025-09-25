@@ -8,17 +8,17 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('learn_answers', function (Blueprint $table) {
+        Schema::create('quiz_answers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('learn_question_id')->constrained('learn_questions')->onDelete('cascade');
-            $table->text('answer_text');
-            $table->boolean('is_correct')->default(false);
+            $table->foreignId('question_id')->constrained('quiz_questions')->onDelete('cascade');
+            $table->string('text');        // jawaban
+            $table->boolean('is_correct'); // benar/salah
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('learn_answers');
+        Schema::dropIfExists('quiz_answers');
     }
 };

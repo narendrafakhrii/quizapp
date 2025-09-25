@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Passage;
+use App\Models\SimulationAnswer;
+use App\Models\SimulationQuestion;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\SimulationQuestion;
-use App\Models\SimulationAnswer;
-use App\Models\Passage;
 
 class SimulationSeeder extends Seeder
 {
@@ -17,12 +17,12 @@ class SimulationSeeder extends Seeder
     {
         // Disable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        
+
         // Truncate tables in correct order
         SimulationAnswer::truncate();
         SimulationQuestion::truncate();
         Passage::truncate();
-        
+
         // Re-enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
@@ -83,13 +83,13 @@ class SimulationSeeder extends Seeder
                 [
                     'text_number' => 1,
                     'title' => 'TEXT 1',
-                    'content' => 'In 2010, researchers estimated that 8 billion kg of plastic entered the ocean in a single year, and that number would sharply increase by 2025. When it enters the ocean, plastic waste disrupts marine ecosystems, travels to central locations, and forms a trash island which can cover an area of more than 1.6 million square km. These plastics never degrade, but rather break up into smaller sizes. They eventually become microplastics that stay in the environment for hundreds of years.\n\nScientists at the University of California San Diego have invented a new biodegradable material that is designed to replace the commonly used plastics. The material started to biodegrade in seawater within four weeks. The team found that various marine organisms colonize the material and break it into nutrients for their consumption.\n\nThe research of this new plastic is joined by experts in biology, chemistry, and marine science. They have shown that it is possible to make durable plastics that also can degrade in the ocean. Plastics should not be going into the ocean in the first place. But now, if they do, this new plastic can become food for microorganisms and not harmful trash.'
+                    'content' => 'In 2010, researchers estimated that 8 billion kg of plastic entered the ocean in a single year, and that number would sharply increase by 2025. When it enters the ocean, plastic waste disrupts marine ecosystems, travels to central locations, and forms a trash island which can cover an area of more than 1.6 million square km. These plastics never degrade, but rather break up into smaller sizes. They eventually become microplastics that stay in the environment for hundreds of years.\n\nScientists at the University of California San Diego have invented a new biodegradable material that is designed to replace the commonly used plastics. The material started to biodegrade in seawater within four weeks. The team found that various marine organisms colonize the material and break it into nutrients for their consumption.\n\nThe research of this new plastic is joined by experts in biology, chemistry, and marine science. They have shown that it is possible to make durable plastics that also can degrade in the ocean. Plastics should not be going into the ocean in the first place. But now, if they do, this new plastic can become food for microorganisms and not harmful trash.',
                 ],
                 [
                     'text_number' => 2,
                     'title' => 'TEXT 2',
-                    'content' => 'Plastic is everywhere and important to the growth of many industries, such as packaging, building, and automotive. About 83.5% of consumer products rely on plastic in some ways. Food without plastic packaging would spoil long before it reaches consumers\' fridges. PVC pipes made of plastic are an essential building part that reduce leakage and corrosion to conserve water and energy. Plastics make cars dramatically lighter, which increases fuel efficiency.\n\nResearchers have been working to improve the plastic recycling process since it was realized that plastic was harming the environment. Recycling plastic not only helps the environment and reduces trash, but it also creates more jobs. The recycling sector generates up to 30 times more jobs than the common disposal sector. In fact, Tellus Institute reports that over 1.5 million new jobs would be created if the national recycling rate could be increased to 75%.\n\nModern recycling techniques can transform plastic into more useful products. Some experts have seen the opportunity to make jet fuel from plastic. However, even a simple recycling strategy has commercial benefits. Over 3 million plastic bottles have already been converted into pillow fillers by IHG Hotels & Resorts. Customers are happy to sleep well and use a product that benefits the environment, according to IHG. And it is all thanks to plastic.'
-                ]
+                    'content' => 'Plastic is everywhere and important to the growth of many industries, such as packaging, building, and automotive. About 83.5% of consumer products rely on plastic in some ways. Food without plastic packaging would spoil long before it reaches consumers\' fridges. PVC pipes made of plastic are an essential building part that reduce leakage and corrosion to conserve water and energy. Plastics make cars dramatically lighter, which increases fuel efficiency.\n\nResearchers have been working to improve the plastic recycling process since it was realized that plastic was harming the environment. Recycling plastic not only helps the environment and reduces trash, but it also creates more jobs. The recycling sector generates up to 30 times more jobs than the common disposal sector. In fact, Tellus Institute reports that over 1.5 million new jobs would be created if the national recycling rate could be increased to 75%.\n\nModern recycling techniques can transform plastic into more useful products. Some experts have seen the opportunity to make jet fuel from plastic. However, even a simple recycling strategy has commercial benefits. Over 3 million plastic bottles have already been converted into pillow fillers by IHG Hotels & Resorts. Customers are happy to sleep well and use a product that benefits the environment, according to IHG. And it is all thanks to plastic.',
+                ],
             ],
         ]);
 
@@ -135,13 +135,13 @@ class SimulationSeeder extends Seeder
                 [
                     'text_number' => 1,
                     'title' => 'TEXT 1',
-                    'content' => 'You\'ve been working and saving for decades for just this moment: retirement. Even though you may be ready to stop working full-time, now comes the hard part: letting yourself use your savings, since you no longer will be bringing in that paycheck, which until now has covered your monthly expenses. Making the psychological shift from saver to spender is no small effort for most people.\n\n"Now you have this lump sum and have to draw it down. For some it\'s almost physically painful," said David John, a senior strategic policy advisor. Unpredictable factors like market performance, life expectancy, and health issues make spending your money easier said than done. That\'s why people may be hesitant to tap their savings because they think, "I have X dollars and it has to last me my whole life, but I have a very uncertain future. So, if I touch that I\'m putting myself at risk."\n\nResearch shows that among retirees with savings, many do not draw down very much, choosing instead to live off fixed sources of funds, such as Social Security, pensions, or income from part-time work they take up. A study found that the vast majority of retirees in America still have at least 80% of their savings after two decades in retirement. No doubt this is partly because they are among the last generation of workers to benefit from corporate pensions.\n\nThe psychological reluctance to tap one\'s savings is a factor for most people regardless of their financial condition. It may become more acute for soon-to-be retirees as they face inflation, unstable markets, and a lack of pensions, John said. They\'re trying to figure out who they are now that their primary career is over and figuring out what they can and can\'t do financially.'
+                    'content' => 'You\'ve been working and saving for decades for just this moment: retirement. Even though you may be ready to stop working full-time, now comes the hard part: letting yourself use your savings, since you no longer will be bringing in that paycheck, which until now has covered your monthly expenses. Making the psychological shift from saver to spender is no small effort for most people.\n\n"Now you have this lump sum and have to draw it down. For some it\'s almost physically painful," said David John, a senior strategic policy advisor. Unpredictable factors like market performance, life expectancy, and health issues make spending your money easier said than done. That\'s why people may be hesitant to tap their savings because they think, "I have X dollars and it has to last me my whole life, but I have a very uncertain future. So, if I touch that I\'m putting myself at risk."\n\nResearch shows that among retirees with savings, many do not draw down very much, choosing instead to live off fixed sources of funds, such as Social Security, pensions, or income from part-time work they take up. A study found that the vast majority of retirees in America still have at least 80% of their savings after two decades in retirement. No doubt this is partly because they are among the last generation of workers to benefit from corporate pensions.\n\nThe psychological reluctance to tap one\'s savings is a factor for most people regardless of their financial condition. It may become more acute for soon-to-be retirees as they face inflation, unstable markets, and a lack of pensions, John said. They\'re trying to figure out who they are now that their primary career is over and figuring out what they can and can\'t do financially.',
                 ],
                 [
                     'text_number' => 2,
                     'title' => 'TEXT 2',
-                    'content' => 'It\'s hard to manage your money well in retirement unless you\'re realistic about what you have. The first thing to do is to make a budget and sketch out a plan to cover your expenses.\n\nBefore retiring, keep track of your spending and regular expenses, like housing, food, health care, etc. Then assess how those expenses might change in retirement (e.g., if you plan to move to a less expensive home or area; and if your insurance costs will be subsidized by your old employer).\n\nYou should also consider paying for a child\'s wedding, buying a car, or taking a major vacation. Then assess what fixed income you will have coming in (e.g., Social Security or pension payments). The difference between your expected spending and your fixed income is the amount you will need to draw from your savings.\n\nIt would also help to consult with a professional. A financial advisor can help you strategize how to manage and use your money in the years ahead. The one common feeling is that people say they are overwhelmed with all the choices they need to make to live off their savings in retirement. With the different types of accounts many have, the potential for penalties and higher taxes if withdrawals are taken incorrectly, and sorting out how their investments may need to shift for retirement income, it can be a lot for a new retiree to get their head around.'
-                ]
+                    'content' => 'It\'s hard to manage your money well in retirement unless you\'re realistic about what you have. The first thing to do is to make a budget and sketch out a plan to cover your expenses.\n\nBefore retiring, keep track of your spending and regular expenses, like housing, food, health care, etc. Then assess how those expenses might change in retirement (e.g., if you plan to move to a less expensive home or area; and if your insurance costs will be subsidized by your old employer).\n\nYou should also consider paying for a child\'s wedding, buying a car, or taking a major vacation. Then assess what fixed income you will have coming in (e.g., Social Security or pension payments). The difference between your expected spending and your fixed income is the amount you will need to draw from your savings.\n\nIt would also help to consult with a professional. A financial advisor can help you strategize how to manage and use your money in the years ahead. The one common feeling is that people say they are overwhelmed with all the choices they need to make to live off their savings in retirement. With the different types of accounts many have, the potential for penalties and higher taxes if withdrawals are taken incorrectly, and sorting out how their investments may need to shift for retirement income, it can be a lot for a new retiree to get their head around.',
+                ],
             ],
         ]);
 
@@ -194,7 +194,7 @@ class SimulationSeeder extends Seeder
             'type' => 'paragraph',
             'subject' => 'English',
             'content' => [
-                ['content' => 'The thrift store business has gone big-time. What used to be a local, mom-and-pop business has been tech-enabled. The technology inclusion allows what were local inventories of unique items to be available worldwide, the resale business, as it is now known, has scaled up. All are facilitated by venture capital and private equity. This business type handles thousands of items and hundreds of millions of dollars of product. The appeal is manifold. Consumers save money on brands they love and help the environment by giving old products new life. Consumers can turn their old stuff into money to buy replacement or other products. The impact goes well beyond resale and has potential to further chip away at the performance of department stores and off-price retailers like Burlington Coat, TJX.']
+                ['content' => 'The thrift store business has gone big-time. What used to be a local, mom-and-pop business has been tech-enabled. The technology inclusion allows what were local inventories of unique items to be available worldwide, the resale business, as it is now known, has scaled up. All are facilitated by venture capital and private equity. This business type handles thousands of items and hundreds of millions of dollars of product. The appeal is manifold. Consumers save money on brands they love and help the environment by giving old products new life. Consumers can turn their old stuff into money to buy replacement or other products. The impact goes well beyond resale and has potential to further chip away at the performance of department stores and off-price retailers like Burlington Coat, TJX.'],
             ],
         ]);
 
@@ -241,7 +241,7 @@ class SimulationSeeder extends Seeder
                 ['content' => '"My parents have never let me fail," he said. "When I want to take a chance at something, they remind me it\'s not a safe route to take. Taking a more rigorous course or trying an activity I may not succeed in, they tell me, will ruin my chances at college admission."'],
                 ['content' => 'I wish I could tell you this is an uncommon story, but kids all over the world admit they are under tremendous pressure to be perfect. When I was traveling in China last fall and asked a student what she did for fun, she replied: "I thought I wasn\'t supposed to tell you that? I wouldn\'t want you to think I am not serious about my work!"'],
                 ['content' => 'Students are usually in shock when I chuckle and tell them I never expect perfection. In fact, I prefer they not project it in their college applications. Of course, this goes against everything they\'ve been told and makes young people uncomfortable. How could a dean of admission at one of America\'s most selective institutions not want the best and the brightest? The reality is, perfection does not exist, and we do not expect to see it in a college application. In fact, admission officers tend to be skeptical of students who present themselves as individuals without flaws.'],
-                ['content' => 'These days, finding imperfections in a college application is like looking for a needle in a haystack. Students try their best to hide factors they perceive to be negative and only tell us things they believe we will find impressive.']
+                ['content' => 'These days, finding imperfections in a college application is like looking for a needle in a haystack. Students try their best to hide factors they perceive to be negative and only tell us things they believe we will find impressive.'],
             ],
         ]);
 
@@ -289,7 +289,7 @@ class SimulationSeeder extends Seeder
                 ['content' => 'This is supported by Dr. Hopkinson, the Medical Director of the British Lung Foundation. He stated that if people switch completely from smoking to vaping, they will substantially reduce their health risks, as e-cigarettes do not contain tobacco and any harmful components are present at a much lower level. He advises people who switch to vaping to try to quit vaping in the long term too, but not at the expense of relapsing to smoking.'],
                 ['content' => 'However, there are arguments about how safe vaping really is. The World Health Organization says e-cigarettes are undoubtedly harmful and should therefore be subject to regulation. It also raises concerns about vaping being aggressively marketed at young people, as well as the possibility of e-smoking leading to the re-normalizing of smoking.'],
                 ['content' => 'A researcher studying the effects of vaping said the findings show that vaping is not safe, especially for the lungs or for young people. He believes that it is dangerous to announce that e-cigarettes are much safer than tobacco.'],
-                ['content' => 'In conclusion, the best advice that can be given is: "If you smoke, switch to vaping; if you don\'t smoke, don\'t vape."']
+                ['content' => 'In conclusion, the best advice that can be given is: "If you smoke, switch to vaping; if you don\'t smoke, don\'t vape."'],
             ],
         ]);
 
@@ -333,7 +333,7 @@ class SimulationSeeder extends Seeder
                     ['option' => 'D', 'text' => 'People know about the risks of vaping, the less important it is to do research on its effects on its users', 'is_correct' => false],
                     ['option' => 'E', 'text' => 'Research is done on the effects of vaping in the UK, the more evidence will be gained about the dangers of smoking', 'is_correct' => false],
                 ],
-            ]
+            ],
         ]);
 
         // === PASSAGE 7: Lullabies (Questions 21-25) ===
@@ -349,133 +349,131 @@ class SimulationSeeder extends Seeder
             ],
         ]);
 
-$this->createQuestionsForPassage($passage7, [
-    [
-        'question' => 'According to the passage, singing lullabies can ... the stress of both mothers and children.',
-        'answers' => [
-            ['option' => 'A', 'text' => 'Remove', 'is_correct' => false],
-            ['option' => 'B', 'text' => 'Recover', 'is_correct' => false],
-            ['option' => 'C', 'text' => 'Replace', 'is_correct' => false],
-            ['option' => 'D', 'text' => 'Reduce', 'is_correct' => true],
-            ['option' => 'E', 'text' => 'Release', 'is_correct' => false],
-        ],
-    ],
-    [
-        'question' => 'The word "soothed" in paragraph 2 in the passage is closest in meaning to ....',
-        'answers' => [
-            ['option' => 'A', 'text' => 'Entertained', 'is_correct' => false],
-            ['option' => 'B', 'text' => 'Calmed', 'is_correct' => true],
-            ['option' => 'C', 'text' => 'Cheered', 'is_correct' => false],
-            ['option' => 'D', 'text' => 'Satisfied', 'is_correct' => false],
-            ['option' => 'E', 'text' => 'Replaced', 'is_correct' => false],
-        ],
-    ],
-    [
-        'question' => 'If unknown songs ... babies will not sleep so easily.',
-        'answers' => [
-            ['option' => 'A', 'text' => 'are delivered', 'is_correct' => true],
-            ['option' => 'B', 'text' => 'are delivering', 'is_correct' => false],
-            ['option' => 'C', 'text' => 'delivered', 'is_correct' => false],
-            ['option' => 'D', 'text' => 'were delivered', 'is_correct' => false],
-            ['option' => 'E', 'text' => 'to deliver', 'is_correct' => false],
-        ],
-    ],
-    [
-        'question' => 'Lullabies ... be identified consistently by most participants in the lab project.',
-        'answers' => [
-            ['option' => 'A', 'text' => 'should', 'is_correct' => false],
-            ['option' => 'B', 'text' => 'could', 'is_correct' => true],
-            ['option' => 'C', 'text' => 'ought to', 'is_correct' => false],
-            ['option' => 'D', 'text' => 'must', 'is_correct' => false],
-            ['option' => 'E', 'text' => 'would', 'is_correct' => false],
-        ],
-    ],
-    [
-        'question' => 'The paragraph following the passage most likely concerns ...',
-        'answers' => [
-            ['option' => 'A', 'text' => 'Negative effects of lullabies for mothers and babies', 'is_correct' => false],
-            ['option' => 'B', 'text' => 'Comparison of traditional and modern lullabies', 'is_correct' => false],
-            ['option' => 'C', 'text' => 'Other studies about lullabies conducted in many modern countries', 'is_correct' => false],
-            ['option' => 'D', 'text' => 'Comparison between maternal and paternal song', 'is_correct' => false],
-            ['option' => 'E', 'text' => 'Infants\' responses to lullabies from various cultures', 'is_correct' => true],
-        ],
-    ],
-]);
+        $this->createQuestionsForPassage($passage7, [
+            [
+                'question' => 'According to the passage, singing lullabies can ... the stress of both mothers and children.',
+                'answers' => [
+                    ['option' => 'A', 'text' => 'Remove', 'is_correct' => false],
+                    ['option' => 'B', 'text' => 'Recover', 'is_correct' => false],
+                    ['option' => 'C', 'text' => 'Replace', 'is_correct' => false],
+                    ['option' => 'D', 'text' => 'Reduce', 'is_correct' => true],
+                    ['option' => 'E', 'text' => 'Release', 'is_correct' => false],
+                ],
+            ],
+            [
+                'question' => 'The word "soothed" in paragraph 2 in the passage is closest in meaning to ....',
+                'answers' => [
+                    ['option' => 'A', 'text' => 'Entertained', 'is_correct' => false],
+                    ['option' => 'B', 'text' => 'Calmed', 'is_correct' => true],
+                    ['option' => 'C', 'text' => 'Cheered', 'is_correct' => false],
+                    ['option' => 'D', 'text' => 'Satisfied', 'is_correct' => false],
+                    ['option' => 'E', 'text' => 'Replaced', 'is_correct' => false],
+                ],
+            ],
+            [
+                'question' => 'If unknown songs ... babies will not sleep so easily.',
+                'answers' => [
+                    ['option' => 'A', 'text' => 'are delivered', 'is_correct' => true],
+                    ['option' => 'B', 'text' => 'are delivering', 'is_correct' => false],
+                    ['option' => 'C', 'text' => 'delivered', 'is_correct' => false],
+                    ['option' => 'D', 'text' => 'were delivered', 'is_correct' => false],
+                    ['option' => 'E', 'text' => 'to deliver', 'is_correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Lullabies ... be identified consistently by most participants in the lab project.',
+                'answers' => [
+                    ['option' => 'A', 'text' => 'should', 'is_correct' => false],
+                    ['option' => 'B', 'text' => 'could', 'is_correct' => true],
+                    ['option' => 'C', 'text' => 'ought to', 'is_correct' => false],
+                    ['option' => 'D', 'text' => 'must', 'is_correct' => false],
+                    ['option' => 'E', 'text' => 'would', 'is_correct' => false],
+                ],
+            ],
+            [
+                'question' => 'The paragraph following the passage most likely concerns ...',
+                'answers' => [
+                    ['option' => 'A', 'text' => 'Negative effects of lullabies for mothers and babies', 'is_correct' => false],
+                    ['option' => 'B', 'text' => 'Comparison of traditional and modern lullabies', 'is_correct' => false],
+                    ['option' => 'C', 'text' => 'Other studies about lullabies conducted in many modern countries', 'is_correct' => false],
+                    ['option' => 'D', 'text' => 'Comparison between maternal and paternal song', 'is_correct' => false],
+                    ['option' => 'E', 'text' => 'Infants\' responses to lullabies from various cultures', 'is_correct' => true],
+                ],
+            ],
+        ]);
 
-// === PASSAGE 8: Sports (Questions 26-30) ===
-$passage8 = Passage::create([
-    'title' => 'The Importance of Sports',
-    'type' => 'paragraph',
-    'subject' => 'English',
-    'content' => [
-        ['content' => 'Sport refers to an activity involving physical activity and skill. Sports are an integral part of human, and there is importance of sports in all spheres of life. Sports have a massive positive effect both physically and mentally.'],
-        ['content' => 'First of all, from the physical point of view, sports strengthen the heart. They serve as an excellent preventive measure against heart diseases leading to an increased life expectancy of individuals. They involve physical activity of the body, because of which blood vessels remain clean. Besides, they reduce the amount of cholesterol and fats in the body because of the increase of flexibility of the wall of the blood vessels. Such flexibility increases due to physical exertion, which is the result of sports.'],
-        ['content' => '(1) In addition, sports make a person experience a good quality of breathing. (2) They strengthen the lungs of the body in particular ways. (3) Sports are particularly helpful in making our body fit and slim. (4) By escalating the lung capacity and efficiency of the body, more oxygen enters the blood which is extremely beneficial. (5) Furthermore, there are fewer chances of developing lung diseases due to sports.'],
-        ['content' => 'Moreover, from the mental point of view, sports bring discipline in life. They teach the values of dedication and patience. Besides, they also teach people how to handle failure because of a number of difficulties of movements found in sports. The importance of following a time schedule is also present in sport, requiring people to be punctual.'],
-        ['content' => 'Finally, sports reduce the stress of mind. People who play sports would certainly experience less depression because sports can ensure the peace of their mind. Most noteworthy, they bring happiness and joy in the life of people who play them.'],
-    ],
-]);
+        // === PASSAGE 8: Sports (Questions 26-30) ===
+        $passage8 = Passage::create([
+            'title' => 'The Importance of Sports',
+            'type' => 'paragraph',
+            'subject' => 'English',
+            'content' => [
+                ['content' => 'Sport refers to an activity involving physical activity and skill. Sports are an integral part of human, and there is importance of sports in all spheres of life. Sports have a massive positive effect both physically and mentally.'],
+                ['content' => 'First of all, from the physical point of view, sports strengthen the heart. They serve as an excellent preventive measure against heart diseases leading to an increased life expectancy of individuals. They involve physical activity of the body, because of which blood vessels remain clean. Besides, they reduce the amount of cholesterol and fats in the body because of the increase of flexibility of the wall of the blood vessels. Such flexibility increases due to physical exertion, which is the result of sports.'],
+                ['content' => '(1) In addition, sports make a person experience a good quality of breathing. (2) They strengthen the lungs of the body in particular ways. (3) Sports are particularly helpful in making our body fit and slim. (4) By escalating the lung capacity and efficiency of the body, more oxygen enters the blood which is extremely beneficial. (5) Furthermore, there are fewer chances of developing lung diseases due to sports.'],
+                ['content' => 'Moreover, from the mental point of view, sports bring discipline in life. They teach the values of dedication and patience. Besides, they also teach people how to handle failure because of a number of difficulties of movements found in sports. The importance of following a time schedule is also present in sport, requiring people to be punctual.'],
+                ['content' => 'Finally, sports reduce the stress of mind. People who play sports would certainly experience less depression because sports can ensure the peace of their mind. Most noteworthy, they bring happiness and joy in the life of people who play them.'],
+            ],
+        ]);
 
-$this->createQuestionsForPassage($passage8, [
-    [
-        'question' => 'The author describes the effect of sports on mental health in paragraph ....',
-        'answers' => [
-            ['option' => 'A', 'text' => '1', 'is_correct' => false],
-            ['option' => 'B', 'text' => '2', 'is_correct' => false],
-            ['option' => 'C', 'text' => '3', 'is_correct' => false],
-            ['option' => 'D', 'text' => '4', 'is_correct' => false],
-            ['option' => 'E', 'text' => '5', 'is_correct' => true],
-        ],
-    ],
-    [
-        'question' => 'The authors would apparently agree that the relationship between sports and heart disease discussed in the passage is similar to phenomenon between ....',
-        'answers' => [
-            ['option' => 'A', 'text' => 'Players and their coach', 'is_correct' => false],
-            ['option' => 'B', 'text' => 'Ambulance and hospital', 'is_correct' => false],
-            ['option' => 'C', 'text' => 'Engine and cars', 'is_correct' => false],
-            ['option' => 'D', 'text' => 'Vaccine and Covid-19', 'is_correct' => true],
-            ['option' => 'E', 'text' => 'Windows and house', 'is_correct' => false],
-        ],
-    ],
-    [
-        'question' => 'The irrelevant statement in paragraphs 3 is sentence ....',
-        'answers' => [
-            ['option' => 'A', 'text' => '1', 'is_correct' => false],
-            ['option' => 'B', 'text' => '2', 'is_correct' => false],
-            ['option' => 'C', 'text' => '3', 'is_correct' => true],
-            ['option' => 'D', 'text' => '4', 'is_correct' => false],
-            ['option' => 'E', 'text' => '5', 'is_correct' => false],
-        ],
-    ],
-    [
-        'question' => 'Regarding the advantages of sports to people\'s life, the more .... the less ....',
-        'answers' => [
-            ['option' => 'A', 'text' => 'Time people spend for sports – life enjoyment they have', 'is_correct' => false],
-            ['option' => 'B', 'text' => 'People inhale oxygen – possibility they suffer from lung diseases', 'is_correct' => false],
-            ['option' => 'C', 'text' => 'Flexible the walls of their blood vessels are – fats people will have', 'is_correct' => true],
-            ['option' => 'D', 'text' => 'People get involved in sports – people want to become punctual', 'is_correct' => false],
-            ['option' => 'E', 'text' => 'Difficulties people face in playing sports – their interest to do sport will be', 'is_correct' => false],
-        ],
-    ],
-    [
-        'question' => 'Here are the jumbled sentences from the paragraph that follows the above paragraph. Please reorder the following sentences. 
+        $this->createQuestionsForPassage($passage8, [
+            [
+                'question' => 'The author describes the effect of sports on mental health in paragraph ....',
+                'answers' => [
+                    ['option' => 'A', 'text' => '1', 'is_correct' => false],
+                    ['option' => 'B', 'text' => '2', 'is_correct' => false],
+                    ['option' => 'C', 'text' => '3', 'is_correct' => false],
+                    ['option' => 'D', 'text' => '4', 'is_correct' => false],
+                    ['option' => 'E', 'text' => '5', 'is_correct' => true],
+                ],
+            ],
+            [
+                'question' => 'The authors would apparently agree that the relationship between sports and heart disease discussed in the passage is similar to phenomenon between ....',
+                'answers' => [
+                    ['option' => 'A', 'text' => 'Players and their coach', 'is_correct' => false],
+                    ['option' => 'B', 'text' => 'Ambulance and hospital', 'is_correct' => false],
+                    ['option' => 'C', 'text' => 'Engine and cars', 'is_correct' => false],
+                    ['option' => 'D', 'text' => 'Vaccine and Covid-19', 'is_correct' => true],
+                    ['option' => 'E', 'text' => 'Windows and house', 'is_correct' => false],
+                ],
+            ],
+            [
+                'question' => 'The irrelevant statement in paragraphs 3 is sentence ....',
+                'answers' => [
+                    ['option' => 'A', 'text' => '1', 'is_correct' => false],
+                    ['option' => 'B', 'text' => '2', 'is_correct' => false],
+                    ['option' => 'C', 'text' => '3', 'is_correct' => true],
+                    ['option' => 'D', 'text' => '4', 'is_correct' => false],
+                    ['option' => 'E', 'text' => '5', 'is_correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Regarding the advantages of sports to people\'s life, the more .... the less ....',
+                'answers' => [
+                    ['option' => 'A', 'text' => 'Time people spend for sports – life enjoyment they have', 'is_correct' => false],
+                    ['option' => 'B', 'text' => 'People inhale oxygen – possibility they suffer from lung diseases', 'is_correct' => false],
+                    ['option' => 'C', 'text' => 'Flexible the walls of their blood vessels are – fats people will have', 'is_correct' => true],
+                    ['option' => 'D', 'text' => 'People get involved in sports – people want to become punctual', 'is_correct' => false],
+                    ['option' => 'E', 'text' => 'Difficulties people face in playing sports – their interest to do sport will be', 'is_correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Here are the jumbled sentences from the paragraph that follows the above paragraph. Please reorder the following sentences. 
 a. Sport is an aspect of human life that is of paramount important 
 b. This is because it is as important as education 
 c. Everyone must perform at least one sport activity on a regular basis 
 d. It certainly increases the quality of human life 
 e. Therefore, it must be made mandatory in schools 
 The best order of sentences above is ....',
-        'answers' => [
-            ['option' => 'A', 'text' => 'a-d-e-b-c', 'is_correct' => false],
-            ['option' => 'B', 'text' => 'a-b-d-e-c', 'is_correct' => false],
-            ['option' => 'C', 'text' => 'a-c-e-b-d', 'is_correct' => false],
-            ['option' => 'D', 'text' => 'a-c-e-d-b', 'is_correct' => false],
-            ['option' => 'E', 'text' => 'a-d-b-c-e', 'is_correct' => true],
-        ],
-    ],
-]);
-
-
+                'answers' => [
+                    ['option' => 'A', 'text' => 'a-d-e-b-c', 'is_correct' => false],
+                    ['option' => 'B', 'text' => 'a-b-d-e-c', 'is_correct' => false],
+                    ['option' => 'C', 'text' => 'a-c-e-b-d', 'is_correct' => false],
+                    ['option' => 'D', 'text' => 'a-c-e-d-b', 'is_correct' => false],
+                    ['option' => 'E', 'text' => 'a-d-b-c-e', 'is_correct' => true],
+                ],
+            ],
+        ]);
 
         $this->command->info('Successfully seeded 3 passages with their questions!');
     }

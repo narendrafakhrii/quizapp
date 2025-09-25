@@ -16,7 +16,7 @@
         <div class="flex justify-between h-16">
             <!-- Brand (Logo selalu di kiri) -->
             <div class="flex-shrink-0 flex items-center">
-                <a href="{{ url('/') }}" class="font-bold text-xl">
+                <a href="{{ url('/') }}" class="font-bold text-3xl">
                     {{ config('app.name') }}
                 </a>
             </div>
@@ -25,8 +25,8 @@
             @if ($type === 'dashboard')
                 <!-- Dashboard Nav -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                        {{ __('Home') }}
                     </x-nav-link>
                 </div>
             @else
@@ -173,9 +173,9 @@
                 @if ($type === 'dashboard')
                     <!-- Dashboard Mobile Menu -->
                     <nav class="space-y-4">
-                        <a href="{{ route('dashboard') }}"
+                        <a href="{{ route('home') }}"
                             class="block py-3 text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors {{ request()->routeIs('dashboard') ? 'text-blue-600' : '' }}">
-                            {{ __('Dashboard') }}
+                            {{ __('Home') }}
                         </a>
                     </nav>
 

@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Exception;
-
-use function Laravel\Prompts\password;
+use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
 {
@@ -17,41 +14,43 @@ class SocialiteController extends Controller
      * Redirect the user to the Google authentication page.
      *
      * @param NA
-     * @return Void
+     * @return void
      */
     public function googleLogin()
     {
         return Socialite::driver('google')->redirect();
     }
 
-    public function googleAuthentication() {
+    public function googleAuthentication()
+    {
         try {
 
-        $googleUser = Socialite::driver('google')->user();
+            $googleUser = Socialite::driver('google')->user();
 
-        $user = User::where('google_id', $googleUser->id)->first();
+            $user = User::where('google_id', $googleUser->id)->first();
 
-        if ($user) {
-            Auth::login($user);
-            return redirect()->route('dashboard');
-        } else {
-            $newUser = User::create([
-                'name' => $googleUser->name,
-                'email' => $googleUser->email,
-                'google_id' => $googleUser->id,
-                'password' => Hash::make('Password@1234'), 
-            ]);
+            if ($user) {
+                Auth::login($user);
 
-            if ($newUser) {
-                Auth::login($newUser);
                 return redirect()->route('dashboard');
+            } else {
+                $newUser = User::create([
+                    'name' => $googleUser->name,
+                    'email' => $googleUser->email,
+                    'google_id' => $googleUser->id,
+                    'password' => Hash::make('Password@1234'),
+                ]);
+
+                if ($newUser) {
+                    Auth::login($newUser);
+
+                    return redirect()->route('dashboard');
+                }
             }
-        }
 
         } catch (Exception $e) {
             dd($e);
         }
-
 
     }
 }

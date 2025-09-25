@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\SimulationQuestion;
 use App\Models\Passage;
+use App\Models\SimulationQuestion;
 
 class SimulationController extends Controller
 {
@@ -12,32 +11,29 @@ class SimulationController extends Controller
     {
         // Ambil semua soal (non-passage) beserta jawaban dan relasi passage
         $questions = SimulationQuestion::where('type', '!=', 'passage')
-    ->with(['answers', 'passage']) // ambil relasi passage
-    ->orderBy('id')
-    ->get();
+            ->with(['answers', 'passage']) // ambil relasi passage
+            ->orderBy('id')
+            ->get();
 
-    $questionsJson = $questions->map(function ($q) {
-    $passage = $q->passage; // relasi belongsTo ke Passage
+        $questionsJson = $questions->map(function ($q) {
+            $passage = $q->passage; // relasi belongsTo ke Passage
 
-    return (object)[
-        'id' => $q->id,
-        'question' => $q->question ?? 'No question text',
-        'type' => $q->type ?? 'multiple_choice',
-        'passage_id' => $passage?->id,
-        'passage_content' => $passage?->content ?? [], // isi passage sebagai array
-        'passage_type' => $passage?->type ?? null,     // tipe passage
-        'answers' => $q->answers->map(function ($a) {
-            return (object)[
-                'id' => $a->id,
-                'option' => $a->option ?? 'X',
-                'text' => $a->text ?? 'No answer text',
+            return (object) [
+                'id' => $q->id,
+                'question' => $q->question ?? 'No question text',
+                'type' => $q->type ?? 'multiple_choice',
+                'passage_id' => $passage?->id,
+                'passage_content' => $passage?->content ?? [], // isi passage sebagai array
+                'passage_type' => $passage?->type ?? null,     // tipe passage
+                'answers' => $q->answers->map(function ($a) {
+                    return (object) [
+                        'id' => $a->id,
+                        'option' => $a->option ?? 'X',
+                        'text' => $a->text ?? 'No answer text',
+                    ];
+                })->toArray(),
             ];
-        })->toArray(),
-    ];
-});
-
-
-
+        });
 
         return view('simulation.simulation', compact('questionsJson'));
     }

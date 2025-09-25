@@ -2,29 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Question; // import Question model
+use App\Models\QuizQuestion;
+
 class QuizController extends Controller
 {
-    public function quiz($level = 'newbie', $category = 'grammar')
+    public function show($category)
     {
-        // Validasi level
-        $validLevels = ['newbie', 'intermediate', 'expert'];
-        if (!in_array($level, $validLevels)) {
-            $level = 'newbie';
+        $validCategories = ['grammar', 'vocabulary', 'reading'];
+        if (! in_array($category, $validCategories)) {
+            abort(404);
         }
 
-        // Ambil soal berdasarkan level dan kategori
-        $questions = Question::with('options')
-            ->byLevel($level)
-            ->byCategory($category)
+        // Ambil 20 soal acak sesuai kategori
+        $questions = QuizQuestion::with('answers')
+            ->where('category', $category)
+            ->inRandomOrder()
+            ->take(20)
             ->get();
 
-        // Jika tidak ada soal, redirect dengan pesan
-        if ($questions->isEmpty()) {
-            return redirect()->route('level')->with('error', 'Belum ada soal untuk level ini.');
-        }
+        // Transformasi data langsung di controller
+        $quizData = $questions->map->toQuizFormat();
 
-        return view('quiz', compact('questions', 'level', 'category'));
+        return view('quiz.quiz-show', compact('category', 'quizData'));
     }
 }

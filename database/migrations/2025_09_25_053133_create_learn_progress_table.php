@@ -8,17 +8,17 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('learn_answers', function (Blueprint $table) {
+        Schema::create('learn_progress', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('learn_question_id')->constrained('learn_questions')->onDelete('cascade');
-            $table->text('answer_text');
-            $table->boolean('is_correct')->default(false);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
+            $table->string('learn_group');
+            $table->unsignedTinyInteger('progress')->default(0);
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('learn_answers');
+        Schema::dropIfExists('learn_progress');
     }
 };
