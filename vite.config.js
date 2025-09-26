@@ -9,5 +9,5 @@ export default defineConfig({
             buildDirectory: "build",
         }),
     ],
-    base: "/build/",
+    base: process.env.APP_URL + "/build/",
 });
