@@ -2,24 +2,16 @@
 
 echo "🚀 Starting deployment..."
 
-# Bersihkan cache & folder lama
-npm cache clean --force
-rm -rf node_modules/.cache || true
-rm -rf bootstrap/cache/*.php
+# Install dependencies
+npm install --omit=dev
 
-# PHP dependencies
-composer install --no-dev --optimize-autoloader
-
-# Node dependencies
-npm ci --omit=dev
+# Build assets
 npm run build
 
-# Laravel optimize
+# Laravel optimizations
 php artisan config:clear
 php artisan cache:clear
 php artisan route:clear
 php artisan view:clear
 php artisan config:cache
-php artisan storage:link || true
-
-echo "✅ Deployment finished!"
+php artisan migrate --force
