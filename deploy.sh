@@ -9,9 +9,17 @@ npm install --omit=dev
 npm run build
 
 # Laravel optimizations
+php artisan migrate --force
+
+php artisan queue:table
+php artisan migrate --force
+
+# Seed the database
+php artisan db:seed --force
+
+# Clear and cache configurations
 php artisan config:clear
 php artisan cache:clear
 php artisan route:clear
 php artisan view:clear
 php artisan config:cache
-php artisan migrate --force
