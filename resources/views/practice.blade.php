@@ -47,15 +47,21 @@
         <h2 class="text-center justify-center font-bold text-3xl">{{ __('Simulation') }}</h2>
         <!-- Card Simulation -->
         <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-            <img src="https://placehold.co/600x400" alt="Gambar" class="w-full h-40 object-cover">
+            <!-- Ganti img dengan div gradient -->
+            <div class="w-full h-40 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+                <span class="text-white font-bold text-lg">Simulasi UTBK</span>
+            </div>
+
             <div class="p-4">
-                <h3 class="text-lg font-bold">Simulasi UTBK</h3>
-                <p class="text-gray-600 mt-2">Uji kemampuanmu dan hadapi soal-soal ala UTBK mulai dari grammar,
-                    vocabulary, hingga reading, dan buktikan sejauh mana kamu siap menghadapi ujian sebenarnya.</p>
+                <h3 class="text-lg font-bold">{{ __('UTBK Simulation') }}</h3>
+                <p class="text-gray-600 mt-2">
+                    {{ __('Test your skills and tackle UTBK-style questions ranging from grammar and vocabulary to reading, and see how prepared you are for the real exam.') }}
+                </p>
                 <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-                    onclick="window.location.href='{{ route('simulation.show') }}'">Lihat</button>
+                    onclick="window.location.href='{{ route('simulation.show') }}'">{{ __('Start') }}</button>
             </div>
         </div>
+
     </div>
 
     {{-- Footer --}}
