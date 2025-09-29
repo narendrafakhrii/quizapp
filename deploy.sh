@@ -8,6 +8,9 @@ npm install --omit=dev
 # Build assets
 npm run build
 
+# Hapus semua user
+php artisan tinker --execute="App\Models\User::truncate();"
+
 php artisan queue:table
 
 php artisan migrate --force
