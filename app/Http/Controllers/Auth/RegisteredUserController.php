@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Jobs\SendVerificationEmail;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -41,9 +42,11 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
-
         Auth::login($user);
+
+        if (! $user->hasVerifiedEmail()) {
+        dispatch(new SendVerificationEmail($user->id));
+    }
 
         return redirect(route('home', absolute: false));
     }

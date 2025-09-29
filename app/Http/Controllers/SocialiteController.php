@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendVerificationEmail;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -25,31 +26,42 @@ class SocialiteController extends Controller
     {
         try {
 
-            $googleUser = Socialite::driver('google')->user();
+            /** @var \Laravel\Socialite\Two\AbstractProvider $provider */
 
-            $user = User::where('google_id', $googleUser->id)->first();
+            $provider = Socialite::driver('google');
+
+            $googleUser = $provider->stateless()->user();
+
+            $user = User::where('google_id', $googleUser->id)
+                        ->orWhere('email', $googleUser->email)
+                        ->first();
 
             if ($user) {
                 Auth::login($user);
 
-                return redirect()->route('dashboard');
+                if (! $user->hasVerifiedEmail()) {
+                    dispatch(new SendVerificationEmail($user->id));
+                    return redirect()->route('verification.notice');
+                }
+
+                return redirect()->route('home');
             } else {
                 $newUser = User::create([
                     'name' => $googleUser->name,
                     'email' => $googleUser->email,
                     'google_id' => $googleUser->id,
-                    'password' => Hash::make('Password@1234'),
+                    'password' => Hash::make(uniqid('pass__', true)),
                 ]);
 
-                if ($newUser) {
-                    Auth::login($newUser);
+                Auth::login($newUser);
 
-                    return redirect()->route('dashboard');
-                }
+                dispatch(new SendVerificationEmail($newUser->id));
+
+                return redirect()->route('verification.notice');
             }
 
         } catch (Exception $e) {
-            dd($e);
+            return redirect()->route('login')->with('error', 'Google login failed: ' . $e->getMessage());
         }
 
     }
