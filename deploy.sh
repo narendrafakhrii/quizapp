@@ -8,9 +8,6 @@ npm install --omit=dev
 # Build assets
 npm run build
 
-# Laravel optimizations
-php artisan migrate --force
-
 php artisan queue:table
 php artisan migrate --force
 

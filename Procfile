@@ -1,3 +1,3 @@
-web: php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
-worker: php artisan queue:work --tries=3
+web: vendor/bin/heroku-php-apache2 public/
+worker: php artisan queue:work --sleep=3 --tries=3
 release: sh deploy.sh
