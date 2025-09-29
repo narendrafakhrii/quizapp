@@ -2,17 +2,18 @@
 
 namespace App\Jobs;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Models\User;
 
 class SendVerificationEmail implements ShouldQueue
 {
-    use InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public int $userId;
+    protected int $userId;
 
     public function __construct(int $userId)
     {
@@ -22,8 +23,9 @@ class SendVerificationEmail implements ShouldQueue
     public function handle()
     {
         $user = User::find($this->userId);
-        if (! $user) return;
-        
-        $user->sendEmailVerificationNotification();
+
+        if ($user && ! $user->hasVerifiedEmail()) {
+            $user->sendEmailVerificationNotification();
+        }
     }
 }

@@ -8,7 +8,6 @@ npm install --omit=dev
 # Build assets
 npm run build
 
-php artisan queue:table
 php artisan migrate --force
 
 # Seed the database
