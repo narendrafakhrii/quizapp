@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout class="g-gradient-to-bl from-[#efeffc] to-[#adccef]">
     <div x-data="quiz({{ Js::from($quizData) }})" x-init="init()" class="space-y-8 bg-gradient-to-bl from-[#efeffc] to-[#adccef]">
         <div class="max-w-3xl mx-auto p-6">
             {{-- Progress bar di atas --}}

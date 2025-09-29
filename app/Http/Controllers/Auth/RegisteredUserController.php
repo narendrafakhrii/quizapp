@@ -45,7 +45,7 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         if (! $user->hasVerifiedEmail()) {
-        dispatch(new SendVerificationEmail($user->id));
+        $user->sendEmailVerificationNotification();
     }
 
         return redirect(route('home', absolute: false));

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\SendVerificationEmail;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -11,12 +10,6 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
 {
-    /**
-     * Redirect the user to the Google authentication page.
-     *
-     * @param NA
-     * @return void
-     */
     public function googleLogin()
     {
         return Socialite::driver('google')->redirect();
@@ -25,11 +18,8 @@ class SocialiteController extends Controller
     public function googleAuthentication()
     {
         try {
-
             /** @var \Laravel\Socialite\Two\AbstractProvider $provider */
-
             $provider = Socialite::driver('google');
-
             $googleUser = $provider->stateless()->user();
 
             $user = User::where('google_id', $googleUser->id)
@@ -40,7 +30,8 @@ class SocialiteController extends Controller
                 Auth::login($user);
 
                 if (! $user->hasVerifiedEmail()) {
-                    dispatch(new SendVerificationEmail($user->id));
+                    // langsung kirim verifikasi tanpa queue
+                    $user->sendEmailVerificationNotification();
                     return redirect()->route('verification.notice');
                 }
 
@@ -55,7 +46,8 @@ class SocialiteController extends Controller
 
                 Auth::login($newUser);
 
-                dispatch(new SendVerificationEmail($newUser->id));
+                // langsung kirim email verifikasi
+                $newUser->sendEmailVerificationNotification();
 
                 return redirect()->route('verification.notice');
             }
@@ -63,6 +55,5 @@ class SocialiteController extends Controller
         } catch (Exception $e) {
             return redirect()->route('login')->with('error', 'Google login failed: ' . $e->getMessage());
         }
-
     }
 }
