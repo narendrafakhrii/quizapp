@@ -19,15 +19,15 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased flex flex-col min-h-screen">
+<body class="font-sans antialiased flex flex-col min-h-screen"
+    style="background-image: url('{{ asset('assets/image/start-background.png') }}'); background-size: cover; background-position: center;">
     <x-navigation type="landing" :showAuthLinks="true" />
 
-    <main
-        class="flex flex-col flex-grow items-center justify-center text-center bg-[url('./assets/image/start-background.png')]">
+    <main class="flex flex-col flex-grow items-center justify-center text-center ">
         <h1 class="text-5xl font-extrabold tracking-tight text-balance sm:text-7xl">
             {{ config('app.name') }}
         </h1>
-        <p class="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">
+        <p class="mt-8 text-lg font-medium text-pretty text-black sm:text-xl/8">
             Be Expert English
         </p>
         <x-button.primary-button class="mt-10">

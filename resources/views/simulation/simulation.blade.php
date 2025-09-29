@@ -27,7 +27,8 @@
             </div>
 
             {{-- Card soal & passage --}}
-            <x-card.primary-card class="p-6 flex-1 mt-4 overflow-hidden" style="max-height: calc(100vh - 120px)">
+            <x-card.primary-card oncontextmenu="return false" class="p-6 flex-1 mt-4 overflow-hidden select-none"
+                style="max-height: calc(100vh - 120px)" translate="no">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
                     {{-- Card kiri (Passage) --}}
                     <div class="primary-card h-[450px] flex flex-col">

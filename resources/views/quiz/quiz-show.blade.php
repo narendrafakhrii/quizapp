@@ -8,34 +8,36 @@
                         :style="`width: ${Math.min(currentIndex+1, total)/total*100}%`"></div>
                 </div>
                 <p class="text-sm text-gray-700 mt-1">
-                    Soal <span x-text="Math.min(currentIndex + 1, total)"></span> / <span x-text="total"></span>
+                    {{ __('Question') }} <span x-text="Math.min(currentIndex + 1, total)"></span> / <span
+                        x-text="total"></span>
                 </p>
             </div>
 
             {{-- Baris waktu & tombol bantuan --}}
             <div class="flex items-center justify-between mb-6">
                 <div class="text-lg font-semibold">
-                    Time left: <span x-text="formatTime(timers[currentIndex])" class="text-red-500"></span>
+                    {{ __('Time Left:') }} <span x-text="formatTime(timers[currentIndex])" class="text-red-500"></span>
                 </div>
 
                 {{-- Tombol bantuan --}}
                 <button class="px-4 py-2 rounded-xl bg-yellow-500 text-white hover:bg-yellow-600"
                     @click="$dispatch('open-modal', 'help-modal')">
-                    Bantuan (<span x-text="maxHelp - helpUsed"></span> tersisa)
+                    {{ __('Hints left:') }} (<span x-text="maxHelp - helpUsed"></span> )
                 </button>
 
                 {{-- Modal Bantuan --}}
                 <x-modal name="help-modal">
                     <div class="p-4">
-                        <h2 class="text-xl font-bold mb-2">Bantuan</h2>
-                        <p>Gunakan bantuan untuk menghilangkan 1 opsi jawaban salah.</p>
-                        <p class="text-sm text-gray-500 mt-2">Sisa bantuan: <span x-text="maxHelp - helpUsed"></span>
+                        <h2 class="text-xl font-bold mb-2">{{ __('Hint') }}</h2>
+                        <p>{{ __('Use a hint to remove one incorrect option') }}</p>
+                        <p class="text-sm text-gray-500 mt-2">{{ __('Hints left') }} <span
+                                x-text="maxHelp - helpUsed"></span>
                         </p>
 
                         {{-- Tombol Gunakan bantuan --}}
                         <button @click="useHelp(); $dispatch('close-modal', 'help-modal')"
                             class="mt-4 px-4 py-2 bg-red-500 text-white rounded">
-                            Gunakan
+                            {{ __('Use') }}
                         </button>
                     </div>
                 </x-modal>
@@ -43,7 +45,7 @@
 
 
             {{-- Soal --}}
-            <template x-for="(question, index) in questions" :key="index">
+            <template x-for="(question, index) in questions" :key="index" translate="no">
                 <div x-show="currentIndex === index && !quizFinished"
                     class="bg-white p-6 rounded-2xl shadow-md space-y-6">
                     <h2 class="text-xl font-bold" x-text="question.question_text"></h2>
@@ -67,20 +69,21 @@
             {{-- Navigasi --}}
             <div class="flex justify-between mt-4" x-cloak x-show="!quizFinished">
                 <button class="px-4 py-2 rounded-xl bg-gray-300 hover:bg-gray-400" @click="prev()"
-                    :disabled="currentIndex === 0">Sebelumnya</button>
+                    :disabled="currentIndex === 0">{{ __('Previous') }}</button>
                 <button class="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700" @click="next()"
-                    :disabled="!answered[currentIndex]">Selanjutnya</button>
+                    :disabled="!answered[currentIndex]">{{ __('Next') }}</button>
             </div>
 
             {{-- Hasil Quiz --}}
             <div x-show="quizFinished" x-cloak class="text-center space-y-6 mt-6">
-                <h2 class="text-2xl font-bold text-green-600">Selamat!</h2>
-                <p class="text-lg">Kamu sudah menyelesaikan kuis ini.</p>
-                <p class="text-xl font-semibold">Skor kamu: <span x-text="score"></span> / <span x-text="total"></span>
+                <h2 class="text-2xl font-bold text-green-600">{{ __('Congrats!') }}</h2>
+                <p class="text-lg">{{ __('You’ve finished this quiz.') }}</p>
+                <p class="text-xl font-semibold">{{ __('Your score:') }} <span x-text="score"></span> / <span
+                        x-text="total"></span>
                 </p>
                 <div class="text-3xl mt-4" x-text="badge"></div>
                 <button @click="restart()" class="px-6 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700">Coba
-                    Lagi</button>
+                    {{ __('Try again') }}</button>
             </div>
         </div>
 

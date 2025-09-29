@@ -17,7 +17,7 @@
     <x-navigation type="general" :menu="$menu ?? []" :showAuthLinks="true" />
 
     <!-- Main Content -->
-    <div class="min-h-screen bg-gray-50 py-8">
+    <div class="min-h-screen py-8">
         <div class="max-w-6xl mx-auto px-4">
             <!-- Header -->
             <div class="text-center mb-12">
