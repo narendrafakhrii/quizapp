@@ -10,11 +10,17 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
 {
+    /**
+     * Redirect the user to the Google authentication page.
+     */
     public function googleLogin()
     {
         return Socialite::driver('google')->redirect();
     }
 
+    /**
+     * Handle Google callback.
+     */
     public function googleAuthentication()
     {
         try {
@@ -29,12 +35,7 @@ class SocialiteController extends Controller
             if ($user) {
                 Auth::login($user);
 
-                if (! $user->hasVerifiedEmail()) {
-                    // langsung kirim verifikasi tanpa queue
-                    $user->sendEmailVerificationNotification();
-                    return redirect()->route('verification.notice');
-                }
-
+                // Langsung masuk ke home tanpa verifikasi email
                 return redirect()->route('home');
             } else {
                 $newUser = User::create([
@@ -46,14 +47,13 @@ class SocialiteController extends Controller
 
                 Auth::login($newUser);
 
-                // langsung kirim email verifikasi
-                $newUser->sendEmailVerificationNotification();
-
-                return redirect()->route('verification.notice');
+                // Langsung masuk ke home tanpa verifikasi email
+                return redirect()->route('home');
             }
 
         } catch (Exception $e) {
-            return redirect()->route('login')->with('error', 'Google login failed: ' . $e->getMessage());
+            return redirect()->route('login')
+                             ->with('error', 'Google login failed: ' . $e->getMessage());
         }
     }
 }
