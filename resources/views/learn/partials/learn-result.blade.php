@@ -2,7 +2,7 @@
     x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100"
     x-cloak class="fixed inset-0 flex items-center justify-center bg-gray-50 z-50 p-6">
     <div class="w-full max-w-3xl bg-white rounded-2xl shadow-lg p-10 text-center">
-        <div class="text-7xl mb-6">\uD83C\uDF89</div>
+        <div class="text-7xl mb-6" x-text="'\uD83C\uDF89'"></div>
         <h2 class="text-4xl font-bold text-gray-800 mb-4">{{ __('Congratulations!') }}</h2>
         <p class="text-gray-600 mb-2 text-lg">{{ __('You have completed the material') }}</p>
         <p class="text-2xl font-semibold text-blue-600 mb-8" x-text="title"></p>
@@ -19,17 +19,21 @@
             {{-- Motivation --}}
             <div>
                 <template x-if="(correctCount/quizCount) >= 0.8">
-                    <p class="text-green-600 font-semibold">{{ __('Great! Your understanding is excellent') }}
-                        \uD83D\uDC4F</p>
+                    <p class="text-green-600 font-semibold"
+                        x-text="`{{ __('Great! Your understanding is excellent') }} \uD83D\uDC4F`">
+                    </p>
                 </template>
                 <template x-if="(correctCount/quizCount) >= 0.5 && (correctCount/quizCount) < 0.8">
-                    <p class="text-yellow-600 font-semibold">{{ __('Not bad! There is still room for improvement') }}
-                        \uD83D\uDCAA</p>
+                    <p class="text-yellow-600 font-semibold"
+                        x-text="`{{ __('Not bad! There is still room for improvement') }} \uD83D\uDCAA`">
+                    </p>
                 </template>
                 <template x-if="(correctCount/quizCount) < 0.5">
-                    <p class="text-red-600 font-semibold">{{ __('Don’t give up, try again!') }} \uD83D\uDD04</p>
+                    <p class="text-red-600 font-semibold" x-text="`{{ __('Don’t give up, try again!') }} \uD83D\uDD04`">
+                    </p>
                 </template>
             </div>
+
         </div>
 
         {{-- Action Buttons --}}

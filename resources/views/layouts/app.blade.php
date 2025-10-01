@@ -28,7 +28,7 @@
 
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
-        <x-navigation :type="$type ?? 'dashboard'" />
+        <x-navigation type="general" :menu="$menu ?? []" :showAuthLinks="true" />
 
         <!-- Page Heading -->
         @isset($header)

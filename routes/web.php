@@ -7,9 +7,13 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\SimulationController;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 // Halaman awal
 Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect()->route('home');
+    }
     return view('start');
 })->name('start');
 
