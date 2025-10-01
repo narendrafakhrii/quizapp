@@ -14,13 +14,16 @@
     <!-- Card Content -->
     <div class="p-8 flex flex-col justify-between min-h-[260px]">
         <p class="text-gray-700 mb-6 flex-1 leading-relaxed">
-            Pelajari {{ strtolower($title) }} dengan {{ $slides }} slide interaktif yang mencakup materi dan
-            latihan soal.
+            {{ __('Learn :title with :slides interactive slides covering materials and practice questions.', [
+                'title' => strtolower($title),
+                'slides' => $slides,
+            ]) }}
+
         </p>
 
         <!-- Stats -->
         <div class="flex items-center justify-between text-sm text-gray-500 mb-6">
-            <span>{{ $slides }} Slides</span>
+            <span>{{ $slides }} {{ __('Slides') }}</span>
 
             <!-- Progress Circle -->
             <div class="relative w-12 h-12">

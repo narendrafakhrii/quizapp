@@ -7,7 +7,16 @@
     <title>{{ config('app.name') }}</title>
 
     <!-- Favicon -->
+    <!-- ICO -->
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
+    <!-- Fallback PNG -->
+    <link rel="icon" href="{{ asset('assets/image/brand.png') }}" type="image/png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -22,7 +31,8 @@
             <!-- Header -->
             <div class="text-center mb-12">
                 <h1 class="text-4xl font-bold text-gray-800 mb-4">{{ __('Learn English') }}</h1>
-                <p class="text-lg text-gray-600">Pilih materi yang ingin Anda pelajari</p>
+                <p class="text-lg text-gray-600">{{ __('Choose the material you want to learn') }}
+                </p>
             </div>
 
             <!-- Cards Grid - 4 Materi Tetap -->

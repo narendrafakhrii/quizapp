@@ -8,7 +8,12 @@
     <title>{{ config('app.name') }}</title>
 
     <!-- Favicon -->
+    <!-- ICO -->
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
+    <!-- Fallback PNG -->
+    <link rel="icon" href="{{ asset('assets/image/brand.png') }}" type="image/png">
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,8 +42,7 @@
         <h2 class="text-center justify-center font-bold text-3xl">{{ __('Play Quiz') }}</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 p-6 pt-35 max-w-6xl mx-auto text-center">
             @foreach ($categories as $cat)
-                <x-card.quiz-card :title="$cat['title']" :description="$cat['description']" :image="$cat['image']" :href="route('quiz.show', $cat['slug'])"
-                    buttonText="Lihat" />
+                <x-card.quiz-card :title="$cat['title']" :description="$cat['description']" :href="route('quiz.show', $cat['slug'])" buttonText='Play' />
             @endforeach
         </div>
     </div>
@@ -47,9 +51,9 @@
         <h2 class="text-center justify-center font-bold text-3xl">{{ __('Simulation') }}</h2>
         <!-- Card Simulation -->
         <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-            <!-- Ganti img dengan div gradient -->
+
             <div class="w-full h-40 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
-                <span class="text-white font-bold text-lg">Simulasi UTBK</span>
+                <span class="text-white font-bold text-lg">{{ __('Start Simulation') }}</span>
             </div>
 
             <div class="p-4">

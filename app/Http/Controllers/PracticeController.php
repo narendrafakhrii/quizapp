@@ -7,10 +7,11 @@ class PracticeController extends Controller
     public function index()
     {
         $categories = [
-            ['title' => 'Grammar', 'description' => 'Latih tata bahasa', 'image' => 'https://placehold.co/600x400', 'slug' => 'grammar'],
-            ['title' => 'Vocabulary', 'description' => 'Kosakata', 'image' => 'https://placehold.co/600x400', 'slug' => 'vocabulary'],
-            ['title' => 'Reading Comprehension', 'description' => 'Pemahaman bacaan', 'image' => 'https://placehold.co/600x400', 'slug' => 'reading'],
-        ];
+    ['title' => 'Grammar', 'description' => __('Practice grammar skills'), 'slug' => 'grammar'],
+    ['title' => 'Vocabulary', 'description' => __('Expand your vocabulary'), 'slug' => 'vocabulary'],
+    ['title' => 'Reading Comprehension', 'description' => __('Improve reading comprehension'), 'slug' => 'reading'],
+];
+
 
         return view('practice', compact('categories'));
     }

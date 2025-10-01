@@ -14,14 +14,24 @@ class LearnController extends Controller
     {
         // Hardcode 4 materi utama
         $learns = [
-            ['title' => 'Grammar', 'group' => 'grammar', 'slides' => 10, 'icon' => '📚'],
-                        ['title' => 'Vocabulary', 'group' => 'vocabulary', 'slides' => 36, 'icon' => '✏️'],
-                        [
-                            'title' => 'Reading Comprehension',
-                            'group' => 'reading-comprehension',
-                            'slides' => 12,
-                            'icon' => '📖',
-                        ],
+[
+    'title' => 'Grammar',
+    'group' => 'grammar',
+    'slides' => 10,
+    'icon' => json_decode('"\uD83D\uDCDA"'),
+],
+[
+    'title' => 'Vocabulary',
+    'group' => 'vocabulary',
+    'slides' => 36,
+    'icon' => json_decode('"\u270F\uFE0F"'),
+],
+[
+    'title' => 'Reading Comprehension',
+    'group' => 'reading-comprehension',
+    'slides' => 12,
+    'icon' => json_decode('"\uD83D\uDCD6"'),
+],
         ];
 
         // Ambil progress user dari tabel learn_progress

@@ -1,5 +1,5 @@
 {{-- Partial: Question List Modal --}}
-<div x-show="showQuestionList" x-cloak x-transition:enter="transition ease-out duration-300"
+<section x-show="showQuestionList" x-cloak x-transition:enter="transition ease-out duration-300"
     x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
     x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
     x-transition:leave-end="opacity-0 scale-90" @keydown.escape.window="showQuestionList = false"
@@ -17,7 +17,7 @@
         </button>
 
         <div class="p-6 flex flex-col gap-4 h-full">
-            <h2 class="text-xl font-semibold mb-2">Question List</h2>
+            <h2 class="text-xl font-semibold mb-2">{{ __('Question List') }}</h2>
 
             <!-- Grid nomor soal -->
             <div class="grid grid-cols-6 gap-3 overflow-y-auto flex-1">
@@ -35,4 +35,4 @@
             </div>
         </div>
     </div>
-</div>
+</section>

@@ -33,7 +33,7 @@
                     {{-- Card kiri (Passage) --}}
                     <div class="primary-card h-[450px] flex flex-col">
                         <div class="text-sm leading-relaxed flex flex-col mb-6 overflow-hidden">
-                            <p class="font-semibold mb-3 flex-shrink-0">Read the passage carefully!</p>
+                            <p class="font-semibold mb-3 flex-shrink-0">{{ __('Read the passage carefully!') }}</p>
 
                             <template x-if="currentQuestion && currentQuestion.passage_content">
                                 <div
@@ -111,7 +111,8 @@
                                 <div
                                     class="flex-1 overflow-y-auto bg-gray-50 p-4 rounded-lg border 
                         scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 hover:scrollbar-thumb-gray-500">
-                                    <p class="text-gray-500 text-center">No passage content available for this question
+                                    <p class="text-gray-500 text-center">
+                                        {{ __('No passage content available for this question') }}
                                     </p>
                                 </div>
                             </template>
@@ -124,14 +125,15 @@
                             <div
                                 class="flex-1 overflow-y-auto bg-gray-50 p-4 rounded-lg border 
                     scrollbar-thin scrollbar-thumb-blue-400 scrollbar-track-blue-100 hover:scrollbar-thumb-blue-500">
-                                <h3 class="font-semibold text-lg mb-2 text-gray-800">Loading...</h3>
-                                <p class="text-gray-500">Please wait...</p>
+                                <h3 class="font-semibold text-lg mb-2 text-gray-800">{{ __('Loading...') }}</h3>
+                                <p class="text-gray-500">{{ __('Please wait...') }}</p>
                             </div>
                         </template>
 
                         <template x-if="currentQuestion">
                             <div class="flex flex-col h-full overflow-hidden mb-4">
-                                <h3 class="font-semibold text-lg mb-2 text-gray-800 flex-shrink-0">Question:</h3>
+                                <h3 class="font-semibold text-lg mb-2 text-gray-800 flex-shrink-0">{{ __('Question:') }}
+                                </h3>
 
                                 <div
                                     class="flex-1 overflow-y-auto pr-2 
@@ -141,7 +143,8 @@
                                     {{-- Jawaban --}}
                                     <div class="bg-blue-50 p-4 rounded-lg mb-6"
                                         x-show="currentQuestion.answers?.length > 0">
-                                        <h4 class="font-medium mb-3 text-gray-800">Choose the correct answer:</h4>
+                                        <h4 class="font-medium mb-3 text-gray-800">
+                                            {{ __('Choose the correct answer:') }}</h4>
                                         <div class="space-y-2">
                                             <template x-for="answer in currentQuestion.answers" :key="answer.id">
                                                 <label
@@ -185,7 +188,7 @@
                 </div>
 
                 <div class="justify-self-center md:justify-self-end">
-                    <!-- Tombol Next atau Finish berdasarkan posisi soal -->
+
                     <template x-if="currentIndex < questions.length - 1">
                         <x-button.primary-button class="bg-blue-500 hover:bg-blue-600" @click="nextQuestion()">
                             {{ __('Next Question') }}
@@ -295,47 +298,50 @@
                     get performanceLevel() {
                         const percentage = this.accuracyPercentage;
 
-                        if (percentage >= 90) {
-                            return {
-                                title: 'Excellent!',
-                                message: 'Performa Anda sangat luar biasa! Pertahankan prestasi ini.',
-                                icon: '🎉',
-                                bgClass: 'bg-green-50',
-                                borderClass: 'border-green-400',
-                                textClass: 'text-green-800',
-                                descClass: 'text-green-600'
-                            };
-                        } else if (percentage >= 75) {
-                            return {
-                                title: 'Good Job!',
-                                message: 'Performa Anda baik. Terus tingkatkan kemampuan Anda.',
-                                icon: '👏',
-                                bgClass: 'bg-blue-50',
-                                borderClass: 'border-blue-400',
-                                textClass: 'text-blue-800',
-                                descClass: 'text-blue-600'
-                            };
-                        } else if (percentage >= 60) {
-                            return {
-                                title: 'Keep Trying!',
-                                message: 'Performa cukup baik. Perbanyak latihan untuk hasil yang lebih baik.',
-                                icon: '💪',
-                                bgClass: 'bg-yellow-50',
-                                borderClass: 'border-yellow-400',
-                                textClass: 'text-yellow-800',
-                                descClass: 'text-yellow-600'
-                            };
-                        } else {
-                            return {
-                                title: 'Need Improvement',
-                                message: 'Jangan menyerah! Perbanyak belajar dan latihan soal.',
-                                icon: '📚',
-                                bgClass: 'bg-red-50',
-                                borderClass: 'border-red-400',
-                                textClass: 'text-red-800',
-                                descClass: 'text-red-600'
-                            };
+                        function getPerformanceLevel(percentage) {
+                            if (percentage >= 90) {
+                                return {
+                                    title: "{{ __('Excellent!') }}",
+                                    message: "{{ __('Your performance is outstanding! Keep up this achievement.') }}",
+                                    icon: '\uD83C\uDF89',
+                                    bgClass: 'bg-green-50',
+                                    borderClass: 'border-green-400',
+                                    textClass: 'text-green-800',
+                                    descClass: 'text-green-600'
+                                };
+                            } else if (percentage >= 75) {
+                                return {
+                                    title: "{{ __('Good Job!') }}",
+                                    message: "{{ __('Your performance is good. Keep improving your skills.') }}",
+                                    icon: '\uD83D\uDC4F',
+                                    bgClass: 'bg-blue-50',
+                                    borderClass: 'border-blue-400',
+                                    textClass: 'text-blue-800',
+                                    descClass: 'text-blue-600'
+                                };
+                            } else if (percentage >= 60) {
+                                return {
+                                    title: "{{ __('Keep Trying!') }}",
+                                    message: "{{ __('Your performance is fair. Practice more for better results.') }}",
+                                    icon: '\uD83D\uDCAA',
+                                    bgClass: 'bg-yellow-50',
+                                    borderClass: 'border-yellow-400',
+                                    textClass: 'text-yellow-800',
+                                    descClass: 'text-yellow-600'
+                                };
+                            } else {
+                                return {
+                                    title: "{{ __('Need Improvement') }}",
+                                    message: "{{ __('Don’t give up! Study and practice more to improve.') }}",
+                                    icon: '\uD83D\uDCDA',
+                                    bgClass: 'bg-red-50',
+                                    borderClass: 'border-red-400',
+                                    textClass: 'text-red-800',
+                                    descClass: 'text-red-600'
+                                };
+                            }
                         }
+
                     },
 
                     loadCurrentQuestion() {
