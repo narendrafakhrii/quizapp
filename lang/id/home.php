@@ -1,4 +1,5 @@
 <?php
+
 return [
     'start_new_learn' => 'Mulai belajar baru',
     'learn' => 'Pelajari',

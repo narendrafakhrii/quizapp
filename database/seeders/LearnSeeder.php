@@ -32,14 +32,14 @@ class LearnSeeder extends Seeder
             'slide_number' => 1,
             'content' => 'Dalam bahasa Inggris, kata dibagi menjadi beberapa kelas kata utama:
 
-• Noun → kata benda (book, car, happiness)
-• Verb → kata kerja (run, eat, is)  
-• Adjective → kata sifat (big, beautiful, smart)
-• Adverb → kata keterangan (quickly, very, well)
-• Pronoun → kata ganti (he, she, it, they)
-• Preposition → kata depan (in, on, at, with)
-• Conjunction → kata sambung (and, but, because)
-• Interjection → kata seru (oh!, wow!)',
+    • Noun → kata benda (book, car, happiness)
+    • Verb → kata kerja (run, eat, is)  
+    • Adjective → kata sifat (big, beautiful, smart)
+    • Adverb → kata keterangan (quickly, very, well)
+    • Pronoun → kata ganti (he, she, it, they)
+    • Preposition → kata depan (in, on, at, with)
+    • Conjunction → kata sambung (and, but, because)
+    • Interjection → kata seru (oh!, wow!)',
             'learn_group' => 'grammar',
         ]);
 
@@ -61,6 +61,7 @@ class LearnSeeder extends Seeder
             ['learn_question_id' => $q1->id, 'answer_text' => 'an', 'is_correct' => true],
             ['learn_question_id' => $q1->id, 'answer_text' => 'the', 'is_correct' => false],
             ['learn_question_id' => $q1->id, 'answer_text' => 'some', 'is_correct' => false],
+            ['learn_question_id' => $q1->id, 'answer_text' => 'any', 'is_correct' => false],
         ]);
 
         $q2 = LearnQuestion::create([
@@ -72,6 +73,7 @@ class LearnSeeder extends Seeder
             ['learn_question_id' => $q2->id, 'answer_text' => 'me', 'is_correct' => false],
             ['learn_question_id' => $q2->id, 'answer_text' => 'my', 'is_correct' => true],
             ['learn_question_id' => $q2->id, 'answer_text' => 'mine', 'is_correct' => false],
+            ['learn_question_id' => $q2->id, 'answer_text' => 'ours', 'is_correct' => false],
         ]);
 
         // 3. Materi Subject-Verb Agreement
@@ -81,16 +83,16 @@ class LearnSeeder extends Seeder
             'slide_number' => 3,
             'content' => 'Aturan dasar dalam bahasa Inggris:
 
-• Subjek tunggal → verb + s/es
-  Contoh: He plays, She goes
+    • Subjek tunggal → verb + s/es
+    Contoh: He plays, She goes
 
-• Subjek jamak → verb dasar  
-  Contoh: They play, We go
+    • Subjek jamak → verb dasar  
+    Contoh: They play, We go
 
-• "I" & "You" → selalu pakai verb dasar
-  Contoh: I go, You like
+    • "I" & "You" → selalu pakai verb dasar
+    Contoh: I go, You like
 
-Penting untuk selalu memperhatikan kesesuaian antara subjek dan kata kerja dalam kalimat.',
+    Penting untuk selalu memperhatikan kesesuaian antara subjek dan kata kerja dalam kalimat.',
             'learn_group' => 'grammar',
         ]);
 
@@ -112,6 +114,7 @@ Penting untuk selalu memperhatikan kesesuaian antara subjek dan kata kerja dalam
             ['learn_question_id' => $q3->id, 'answer_text' => 'goes', 'is_correct' => true],
             ['learn_question_id' => $q3->id, 'answer_text' => 'going', 'is_correct' => false],
             ['learn_question_id' => $q3->id, 'answer_text' => 'gone', 'is_correct' => false],
+            ['learn_question_id' => $q3->id, 'answer_text' => 'will go', 'is_correct' => false],
         ]);
 
         $q4 = LearnQuestion::create([
@@ -123,6 +126,7 @@ Penting untuk selalu memperhatikan kesesuaian antara subjek dan kata kerja dalam
             ['learn_question_id' => $q4->id, 'answer_text' => 'plays', 'is_correct' => false],
             ['learn_question_id' => $q4->id, 'answer_text' => 'playing', 'is_correct' => false],
             ['learn_question_id' => $q4->id, 'answer_text' => 'played', 'is_correct' => false],
+            ['learn_question_id' => $q4->id, 'answer_text' => 'will play', 'is_correct' => false],
         ]);
 
         // 5. Materi Tenses
@@ -132,17 +136,17 @@ Penting untuk selalu memperhatikan kesesuaian antara subjek dan kata kerja dalam
             'slide_number' => 5,
             'content' => 'Simple Present vs Simple Past:
 
-• Simple Present: Fakta atau kebiasaan
-  Contoh: I study every night
+    • Simple Present: Fakta atau kebiasaan
+    Contoh: I study every night
 
-• Simple Past: Kejadian lampau
-  Contoh: I studied yesterday
+    • Simple Past: Kejadian lampau
+    Contoh: I studied yesterday
 
-Kata kunci:
-• Present → always, usually, every day
-• Past → yesterday, last night, two days ago
+    Kata kunci:
+    • Present → always, usually, every day
+    • Past → yesterday, last night, two days ago
 
-Gunakan tenses yang tepat sesuai dengan waktu kejadian.',
+    Gunakan tenses yang tepat sesuai dengan waktu kejadian.',
             'learn_group' => 'grammar',
         ]);
 
@@ -164,6 +168,7 @@ Gunakan tenses yang tepat sesuai dengan waktu kejadian.',
             ['learn_question_id' => $q5->id, 'answer_text' => 'studied', 'is_correct' => false],
             ['learn_question_id' => $q5->id, 'answer_text' => 'studying', 'is_correct' => false],
             ['learn_question_id' => $q5->id, 'answer_text' => 'studies', 'is_correct' => false],
+            ['learn_question_id' => $q5->id, 'answer_text' => 'will study', 'is_correct' => false],
         ]);
 
         $q6 = LearnQuestion::create([
@@ -175,6 +180,7 @@ Gunakan tenses yang tepat sesuai dengan waktu kejadian.',
             ['learn_question_id' => $q6->id, 'answer_text' => 'goes', 'is_correct' => false],
             ['learn_question_id' => $q6->id, 'answer_text' => 'went', 'is_correct' => true],
             ['learn_question_id' => $q6->id, 'answer_text' => 'going', 'is_correct' => false],
+            ['learn_question_id' => $q6->id, 'answer_text' => 'will go', 'is_correct' => false],
         ]);
 
         // 7. Materi Pronouns
@@ -182,12 +188,28 @@ Gunakan tenses yang tepat sesuai dengan waktu kejadian.',
             'title' => 'Pronouns',
             'slide_type' => 'material',
             'slide_number' => 7,
-            'content' => 'Jenis-jenis Pronoun:
+            'content' => 'Pronoun = kata ganti untuk menghindari pengulangan noun.
 
-• Subject Pronoun: I, you, he, she, it, we, they
-• Object Pronoun: me, you, him, her, it, us, them
-• Possessive Adjective: my, your, his, her, its, our, their
-• Possessive Pronoun: mine, yours, his, hers, ours, theirs',
+Jenis-jenis Pronoun & Kegunaannya:
+• Subject Pronoun: I, you, he, she, it, we, they  
+  → menggantikan subjek dalam kalimat.  
+  Contoh: Anna is smart. She studies hard.  
+
+• Object Pronoun: me, you, him, her, it, us, them  
+  → menggantikan objek dalam kalimat.  
+  Contoh: I like Anna. I like her.  
+
+• Possessive Adjective: my, your, his, her, its, our, their  
+  → menunjukkan kepemilikan, selalu diikuti noun.  
+  Contoh: This is my book.  
+
+• Possessive Pronoun: mine, yours, his, hers, ours, theirs  
+  → menunjukkan kepemilikan tanpa diikuti noun.  
+  Contoh: This book is mine.  
+
+• Reflexive Pronoun: myself, yourself, himself, herself, itself, ourselves, yourselves, themselves  
+  → digunakan saat subjek & objek sama.  
+  Contoh: I taught myself English.',
             'learn_group' => 'grammar',
         ]);
 
@@ -208,6 +230,8 @@ Gunakan tenses yang tepat sesuai dengan waktu kejadian.',
             ['learn_question_id' => $q7a->id, 'answer_text' => 'He', 'is_correct' => true],
             ['learn_question_id' => $q7a->id, 'answer_text' => 'Him', 'is_correct' => false],
             ['learn_question_id' => $q7a->id, 'answer_text' => 'His', 'is_correct' => false],
+            ['learn_question_id' => $q7a->id, 'answer_text' => 'They', 'is_correct' => false],
+            ['learn_question_id' => $q7a->id, 'answer_text' => 'She', 'is_correct' => false],
         ]);
 
         $q7b = LearnQuestion::create([
@@ -218,6 +242,8 @@ Gunakan tenses yang tepat sesuai dengan waktu kejadian.',
             ['learn_question_id' => $q7b->id, 'answer_text' => 'mine', 'is_correct' => true],
             ['learn_question_id' => $q7b->id, 'answer_text' => 'my', 'is_correct' => false],
             ['learn_question_id' => $q7b->id, 'answer_text' => 'me', 'is_correct' => false],
+            ['learn_question_id' => $q7b->id, 'answer_text' => 'her', 'is_correct' => false],
+            ['learn_question_id' => $q7b->id, 'answer_text' => 'ours', 'is_correct' => false],
         ]);
 
         $q7c = LearnQuestion::create([
@@ -228,6 +254,8 @@ Gunakan tenses yang tepat sesuai dengan waktu kejadian.',
             ['learn_question_id' => $q7c->id, 'answer_text' => 'she', 'is_correct' => false],
             ['learn_question_id' => $q7c->id, 'answer_text' => 'her', 'is_correct' => true],
             ['learn_question_id' => $q7c->id, 'answer_text' => 'hers', 'is_correct' => false],
+            ['learn_question_id' => $q7c->id, 'answer_text' => 'him', 'is_correct' => false],
+            ['learn_question_id' => $q7c->id, 'answer_text' => 'them', 'is_correct' => false],
         ]);
 
         // 9. Materi Adjectives & Adverbs
@@ -235,13 +263,27 @@ Gunakan tenses yang tepat sesuai dengan waktu kejadian.',
             'title' => 'Adjectives & Adverbs',
             'slide_type' => 'material',
             'slide_number' => 9,
-            'content' => 'Adjective: menerangkan noun. 
-Contoh: She is a smart student.
+            'content' => 'Adjectives = kata sifat → menjelaskan noun/pronoun.  
+Contoh: She is a smart student. (smart = adjective)  
 
-Adverb: menerangkan verb/adjective/adverb lain. 
-Contoh: She runs quickly.
+Fungsi utama Adjective:  
+• Menjelaskan noun → a beautiful house  
+• Menjadi complement setelah linking verb (be, seem, look) → The food is delicious.  
 
-Banyak adverb terbentuk dari adjective + -ly (quick → quickly).',
+Adverbs = kata keterangan → menjelaskan verb, adjective, atau adverb lain.  
+Contoh: She runs quickly. (quickly = adverb)  
+
+Fungsi utama Adverb:  
+• Menjelaskan verb → He speaks slowly.  
+• Menjelaskan adjective → It is very hot.  
+• Menjelaskan adverb lain → She drives too fast.  
+
+Banyak adverb terbentuk dari adjective + -ly:  
+quick → quickly, happy → happily  
+
+⚠️ Pengecualian:  
+• good (adj) → well (adv)  
+• fast, hard, late → bentuk adjective & adverb sama.',
             'learn_group' => 'grammar',
         ]);
 
@@ -261,6 +303,9 @@ Banyak adverb terbentuk dari adjective + -ly (quick → quickly).',
         LearnAnswer::insert([
             ['learn_question_id' => $q9a->id, 'answer_text' => 'careful', 'is_correct' => true],
             ['learn_question_id' => $q9a->id, 'answer_text' => 'carefully', 'is_correct' => false],
+            ['learn_question_id' => $q9a->id, 'answer_text' => 'carefulness', 'is_correct' => false],
+            ['learn_question_id' => $q9a->id, 'answer_text' => 'carelessly', 'is_correct' => false],
+            ['learn_question_id' => $q9a->id, 'answer_text' => 'care', 'is_correct' => false],
         ]);
 
         $q9b = LearnQuestion::create([
@@ -270,6 +315,9 @@ Banyak adverb terbentuk dari adjective + -ly (quick → quickly).',
         LearnAnswer::insert([
             ['learn_question_id' => $q9b->id, 'answer_text' => 'beautiful', 'is_correct' => false],
             ['learn_question_id' => $q9b->id, 'answer_text' => 'beautifully', 'is_correct' => true],
+            ['learn_question_id' => $q9b->id, 'answer_text' => 'beauty', 'is_correct' => false],
+            ['learn_question_id' => $q9b->id, 'answer_text' => 'beautifulness', 'is_correct' => false],
+            ['learn_question_id' => $q9b->id, 'answer_text' => 'beautifuls', 'is_correct' => false],
         ]);
 
         $q9c = LearnQuestion::create([
@@ -279,6 +327,9 @@ Banyak adverb terbentuk dari adjective + -ly (quick → quickly).',
         LearnAnswer::insert([
             ['learn_question_id' => $q9c->id, 'answer_text' => 'happy', 'is_correct' => true],
             ['learn_question_id' => $q9c->id, 'answer_text' => 'happily', 'is_correct' => false],
+            ['learn_question_id' => $q9c->id, 'answer_text' => 'happiness', 'is_correct' => false],
+            ['learn_question_id' => $q9c->id, 'answer_text' => 'unhappy', 'is_correct' => false],
+            ['learn_question_id' => $q9c->id, 'answer_text' => 'happier', 'is_correct' => false],
         ]);
 
         /*

@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,22 +27,21 @@ class AppServiceProvider extends ServiceProvider
         }
 
         View::composer('*', function ($view) {
-    $currentRoute = Route::currentRouteName();
+            $currentRoute = Route::currentRouteName();
 
-    
-    $noMenuRoutes = ['start'];
+            $noMenuRoutes = ['start'];
 
-    if (in_array($currentRoute, $noMenuRoutes)) {
-        $menu = []; 
-    } else {
-        $menu = [
-            ['name' => 'Home', 'url' => route('home')],
-            ['name' => 'Learn', 'url' => route('learn.index')],
-            ['name' => 'Practice', 'url' => route('practice')],
-        ];
-    }
+            if (in_array($currentRoute, $noMenuRoutes)) {
+                $menu = [];
+            } else {
+                $menu = [
+                    ['name' => 'Home', 'url' => route('home')],
+                    ['name' => 'Learn', 'url' => route('learn.index')],
+                    ['name' => 'Practice', 'url' => route('practice')],
+                ];
+            }
 
-    $view->with('menu', $menu);
-});
+            $view->with('menu', $menu);
+        });
     }
 }

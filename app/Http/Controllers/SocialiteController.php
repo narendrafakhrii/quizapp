@@ -29,8 +29,8 @@ class SocialiteController extends Controller
             $googleUser = $provider->stateless()->user();
 
             $user = User::where('google_id', $googleUser->id)
-                        ->orWhere('email', $googleUser->email)
-                        ->first();
+                ->orWhere('email', $googleUser->email)
+                ->first();
 
             if ($user) {
                 Auth::login($user);
@@ -53,7 +53,7 @@ class SocialiteController extends Controller
 
         } catch (Exception $e) {
             return redirect()->route('login')
-                             ->with('error', 'Google login failed: ' . $e->getMessage());
+                ->with('error', 'Google login failed: '.$e->getMessage());
         }
     }
 }

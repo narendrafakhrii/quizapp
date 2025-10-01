@@ -14,24 +14,24 @@ class LearnController extends Controller
     {
         // Hardcode 4 materi utama
         $learns = [
-[
-    'title' => 'Grammar',
-    'group' => 'grammar',
-    'slides' => 10,
-    'icon' => json_decode('"\uD83D\uDCDA"'),
-],
-[
-    'title' => 'Vocabulary',
-    'group' => 'vocabulary',
-    'slides' => 36,
-    'icon' => json_decode('"\u270F\uFE0F"'),
-],
-[
-    'title' => 'Reading Comprehension',
-    'group' => 'reading-comprehension',
-    'slides' => 12,
-    'icon' => json_decode('"\uD83D\uDCD6"'),
-],
+            [
+                'title' => 'Grammar',
+                'group' => 'grammar',
+                'slides' => 10,
+                'icon' => json_decode('"\uD83D\uDCDA"'),
+            ],
+            [
+                'title' => 'Vocabulary',
+                'group' => 'vocabulary',
+                'slides' => 36,
+                'icon' => json_decode('"\u270F\uFE0F"'),
+            ],
+            [
+                'title' => 'Reading Comprehension',
+                'group' => 'reading-comprehension',
+                'slides' => 12,
+                'icon' => json_decode('"\uD83D\uDCD6"'),
+            ],
         ];
 
         // Ambil progress user dari tabel learn_progress
@@ -40,9 +40,10 @@ class LearnController extends Controller
 
         // Gabungkan progress ke setiap item
         $learns = collect($learns)->map(function ($item) use ($progressData) {
-        $item['progress'] = $progressData[$item['group']]->progress ?? 0;
-        return $item;
-    });
+            $item['progress'] = $progressData[$item['group']]->progress ?? 0;
+
+            return $item;
+        });
 
         return view('learn', compact('learns'));
     }
@@ -102,7 +103,7 @@ class LearnController extends Controller
         ]);
     }
 
-       public function updateProgress(Request $request, $group)
+    public function updateProgress(Request $request, $group)
     {
         $request->validate([
             'progress' => 'required|integer|min:0|max:100',
