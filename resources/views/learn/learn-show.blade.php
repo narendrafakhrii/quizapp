@@ -10,8 +10,9 @@
                     <span class="px-3 py-1 rounded-full text-xs font-medium"
                         :class="currentSlideData?.slide_type === 'material' ? 'bg-green-100 text-green-800' :
                             'bg-blue-100 text-blue-800'"
-                        x-text="currentSlideData?.slide_type === 'material' ? 'Materi' : 'Soal'">
+                        x-text="currentSlideData?.slide_type === 'material' ? 'Material' : 'Quiz'">
                     </span>
+
                 </div>
             </div>
 
@@ -63,12 +64,13 @@
                         :class="isCorrect ? 'bg-green-100 border border-green-300' : 'bg-red-100 border border-red-300'">
                         <div class="text-3md mb-2" x-text="isCorrect ? '🎉' : '❌'"></div>
                         <p class="text-sm font-semibold" :class="isCorrect ? 'text-green-800' : 'text-red-800'"
-                            x-text="isCorrect ? 'Benar! Jawaban Anda tepat!' : 'Salah! Coba lagi next time!'">
+                            x-text="isCorrect ? 'Correct! Well done!' : 'Wrong! Try again next time!'">
                         </p>
                         <p x-show="!isCorrect && correctAnswer" class="text-sm text-gray-600 mt-2">
-                            Jawaban yang benar: <span class="font-semibold" x-text="correctAnswer"></span>
+                            {{ __('The correct answer:') }} <span class="font-semibold" x-text="correctAnswer"></span>
                         </p>
                     </div>
+
                 </div>
             </div>
 
@@ -77,15 +79,16 @@
                 <button @click="previousSlide()" :disabled="currentSlide === 0"
                     class="px-8 py-3 rounded-full font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     :class="currentSlide === 0 ? 'bg-gray-300 text-gray-500' : 'bg-gray-500 text-white hover:bg-gray-600'">
-                    ← Sebelumnya
+                    {{ __('← Previous') }}
                 </button>
 
                 <button @click="nextSlide()" :disabled="currentSlideData?.slide_type === 'quiz' && !answered"
                     class="px-8 py-3 rounded-full font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     :class="(currentSlideData?.slide_type === 'quiz' && !answered) ? 'bg-gray-300 text-gray-500' :
                     'bg-blue-500 text-white hover:bg-blue-600'"
-                    x-text="currentSlide === totalSlides - 1 ? 'Selesai' : 'Selanjutnya →'">
+                    x-text="currentSlide === totalSlides - 1 ? 'Finish' : 'Next →'">
                 </button>
+
             </div>
 
             {{-- Completion Modal --}}
