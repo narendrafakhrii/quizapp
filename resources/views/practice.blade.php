@@ -39,13 +39,33 @@
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6 p-6 pt-35 max-w-7xl mx-auto mt-4">
-        <h2 class="text-center justify-center font-bold text-3xl">{{ __('Play Quiz') }}</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 p-6 pt-35 max-w-6xl mx-auto text-center">
-            @foreach ($categories as $cat)
-                <x-card.quiz-card :title="$cat['title']" :description="$cat['description']" :href="route('quiz.show', $cat['slug'])" buttonText='Play' />
+
+        <!-- Judul -->
+        <h2 class="text-center justify-center font-bold text-3xl" x-data="{ show: false }" x-intersect.once="show = true"
+            x-cloak>
+            <span x-show="show" x-transition:enter="transition ease-in-out duration-1000"
+                x-transition:enter-start="opacity-0 -translate-y-6" x-transition:enter-end="opacity-100 translate-y-0"
+                class="block">
+                {{ __('Play Quiz') }}
+            </span>
+        </h2>
+
+        <!-- Grid card -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 p-6 pt-6 max-w-6xl mx-auto text-center">
+            @foreach ($categories as $index => $cat)
+                <div x-data="{ show: false }" x-intersect.once="show = true" class="transform" x-cloak>
+                    <!-- element yang melakukan transition -->
+                    <div x-show="show" x-transition:enter="transition ease-in-out duration-1000"
+                        x-transition:enter-start="opacity-0 {{ $index % 2 === 0 ? '-translate-y-6' : 'translate-y-6' }}"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        style="transition-delay: {{ $index * 180 }}ms">
+                        <x-card.quiz-card :title="$cat['title']" :description="$cat['description']" :href="route('quiz.show', $cat['slug'])" buttonText="Play" />
+                    </div>
+                </div>
             @endforeach
         </div>
     </div>
+
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6 p-6 pt-35 max-w-6xl mx-auto">
         <h2 class="text-center justify-center font-bold text-3xl">{{ __('Simulation') }}</h2>

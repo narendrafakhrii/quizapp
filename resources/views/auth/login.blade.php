@@ -19,10 +19,37 @@
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
+        <div class="mt-4" x-data="{ show: false }">
             <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                autocomplete="current-password" />
+
+            <div class="relative">
+                <!-- Input password -->
+                <input id="password"
+                    class="block mt-1 w-full pr-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    :type="show ? 'text' : 'password'" name="password" required autocomplete="current-password" />
+
+                <button type="button" @click="show = !show" :aria-label="show ? 'Hide password' : 'Show password'"
+                    x-bind:title="show ? 'Hide password' : 'Show password'"
+                    class="absolute inset-y-0 right-2    flex items-center p-1">
+                    <!-- Eye (visible) -->
+                    <svg x-show="!show" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" x-cloak>
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.458 12C3.732 8.943 6.523 6.5 10 6.5c3.478 0 6.268 2.444 7.542 5.5-1.274 3.057-4.064 5.5-7.542 5.5-3.477 0-6.268-2.443-7.542-5.5z" />
+                        <circle cx="10" cy="12" r="2" />
+                    </svg>
+
+                    <!-- Eye Off (hidden) -->
+                    <svg x-show="show" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" x-cloak>
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17.94 17.94A10.94 10.94 0 0 1 12 19.5c-3.478 0-6.268-2.443-7.542-5.5.727-1.747 1.95-3.226 3.5-4.243" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9.88 9.88A2 2 0 0 0 12 12c.35 0 .68-.08.98-.22" />
+                    </svg>
+                </button>
+            </div>
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 

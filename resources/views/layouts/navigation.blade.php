@@ -6,7 +6,7 @@
 ])
 
 <nav x-data="{ open: false, showAccountMenu: false }"
-    class="relative z-50
+    class="sticky top-0 z-50
     {{ $type === 'general' ? 'bg-blue-600 text-white shadow-md border-b-2 border-black' : '' }}
     {{ $type === 'dashboard' ? 'bg-white border-b border-gray-100' : '' }}
     {{ $type === 'landing' ? 'bg-blue-600 text-white shadow-md border-b-2 border-black' : '' }}

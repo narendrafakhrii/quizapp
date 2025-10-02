@@ -35,13 +35,22 @@
                 </p>
             </div>
 
-            <!-- Cards Grid - 4 Materi Tetap -->
+            <!-- Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                @foreach ($learns as $learn)
-                    <x-card.learn-card :title="$learn['title']" :group="$learn['group']" :slides="$learn['slides']" :icon="$learn['icon']"
-                        :progress="$learn['progress']" />
+                @foreach ($learns as $index => $learn)
+                    <div x-data="{ show: false }" x-intersect.once="show = true" x-init="setTimeout(() => { if (!show) show = true }, {{ 200 + $index * 200 }})"
+                        class="transform">
+                        <div x-show="show" x-transition:enter="transition ease-in-out duration-1000"
+                            x-transition:enter-start="opacity-0 {{ $index % 2 === 0 ? '-translate-y-6' : 'translate-y-6' }}"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            style="transition-delay: {{ $index * 200 }}ms" x-cloak>
+                            <x-card.learn-card :title="$learn['title']" :group="$learn['group']" :slides="$learn['slides']" :icon="$learn['icon']"
+                                :progress="$learn['progress']" />
+                        </div>
+                    </div>
                 @endforeach
             </div>
+
         </div>
     </div>
 

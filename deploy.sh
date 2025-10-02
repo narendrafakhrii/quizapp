@@ -18,6 +18,9 @@ php artisan migrate --force
 # Seed the database
 php artisan db:seed --force
 
+# Buat symlink ke storage/public
+php artisan storage:link || true
+
 # Clear and cache configurations
 php artisan config:clear
 php artisan cache:clear
