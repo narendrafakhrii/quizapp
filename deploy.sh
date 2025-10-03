@@ -19,7 +19,10 @@ php artisan migrate --force
 php artisan db:seed --force
 
 # Buat symlink ke storage/public
+rm -rf public/storage
 php artisan storage:link || true
+mkdir -p public/storage
+cp -r storage/app/public/* public/storage/ || true
 
 # Clear and cache configurations
 php artisan config:clear
